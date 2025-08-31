@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   create_node.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/31 18:27:03 by shattori          #+#    #+#             */
-/*   Updated: 2025/08/31 18:50:40 by shattori         ###   ########.fr       */
+/*   Created: 2025/03/27 19:34:31 by shattori          #+#    #+#             */
+/*   Updated: 2025/03/27 19:45:49 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "libft.h"
 
-int	is_valid(int ac, char **av)
+t_DNode	*create_node(int data)
 {
-	if (ac == 1 && ft_strncmp(av[1], ".cub", ft_strlen(av[1])))
-		perror("write only 1 args\nand a map in format .cub");
-	return (1);
+	t_DNode	*new_node;
+
+	new_node = (t_DNode *)malloc(sizeof(t_DNode));
+	if (!new_node)
+		return (NULL);
+	new_node->data = data;
+	new_node->prev = NULL;
+	new_node->next = NULL;
+	return (new_node);
 }

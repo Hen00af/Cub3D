@@ -1,20 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/31 18:27:03 by shattori          #+#    #+#             */
-/*   Updated: 2025/08/31 18:50:40 by shattori         ###   ########.fr       */
+/*   Created: 2024/11/02 16:27:49 by shattori          #+#    #+#             */
+/*   Updated: 2024/11/06 18:07:43 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "libft.h"
 
-int	is_valid(int ac, char **av)
+char	*ft_strmapi(const char *s, char (*f)(unsigned int, char))
 {
-	if (ac == 1 && ft_strncmp(av[1], ".cub", ft_strlen(av[1])))
-		perror("write only 1 args\nand a map in format .cub");
-	return (1);
+	char	*buff;
+	int		i;
+
+	i = 0;
+	buff = malloc((ft_strlen(s) + 1) * sizeof(char));
+	if (!buff)
+		return (NULL);
+	while (s[i])
+	{
+		buff[i] = (*f)(i, s[i]);
+		i++;
+	}
+	buff[i] = '\0';
+	return (buff);
 }

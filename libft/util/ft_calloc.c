@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/31 18:27:03 by shattori          #+#    #+#             */
-/*   Updated: 2025/08/31 18:50:40 by shattori         ###   ########.fr       */
+/*   Created: 2024/10/26 13:50:56 by shattori          #+#    #+#             */
+/*   Updated: 2024/11/06 17:59:17 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "libft.h"
 
-int	is_valid(int ac, char **av)
+void	*ft_calloc(size_t count, size_t size)
 {
-	if (ac == 1 && ft_strncmp(av[1], ".cub", ft_strlen(av[1])))
-		perror("write only 1 args\nand a map in format .cub");
-	return (1);
+	void	*ret;
+
+	if (size && count > __SIZE_MAX__ / size)
+		return (NULL);
+	ret = malloc(size * count);
+	if (!ret)
+		return (NULL);
+	ft_bzero(ret, size * count);
+	return (ret);
 }

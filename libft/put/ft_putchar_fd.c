@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/31 18:27:03 by shattori          #+#    #+#             */
-/*   Updated: 2025/08/31 18:50:40 by shattori         ###   ########.fr       */
+/*   Created: 2024/11/05 14:20:42 by shattori          #+#    #+#             */
+/*   Updated: 2025/03/27 19:35:45 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "libft.h"
 
-int	is_valid(int ac, char **av)
+int	ft_putchar_fd(char c, int fd)
 {
-	if (ac == 1 && ft_strncmp(av[1], ".cub", ft_strlen(av[1])))
-		perror("write only 1 args\nand a map in format .cub");
-	return (1);
+	return (write(fd, &c, 1));
 }

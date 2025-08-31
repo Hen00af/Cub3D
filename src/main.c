@@ -6,12 +6,15 @@
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 18:10:42 by shattori          #+#    #+#             */
-/*   Updated: 2025/08/31 18:13:47 by shattori         ###   ########.fr       */
+/*   Updated: 2025/08/31 18:41:03 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-int main ()
+
+int	main(int ac, char **av)
 {
-	
+	if (is_valid(ac, av))
+		return (1);
+	return (0);
 }

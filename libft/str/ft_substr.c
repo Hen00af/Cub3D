@@ -1,25 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/31 18:12:33 by shattori          #+#    #+#             */
-/*   Updated: 2025/08/31 18:48:05 by shattori         ###   ########.fr       */
+/*   Created: 2024/10/26 15:19:52 by shattori          #+#    #+#             */
+/*   Updated: 2024/11/06 18:08:37 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
-# include <fcntl.h>
-# include <math.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <unistd.h>
 #include "libft.h"
 
-int	is_valid(int ac, char **av);
+char	*ft_substr(char const *s, unsigned int start, size_t z)
+{
+	char	*buff;
+	size_t	i;
+	size_t	s_len;
 
-#endif
+	if (!s)
+		return (NULL);
+	s_len = ft_strlen(s);
+	if (start >= s_len)
+		return (ft_strdup(""));
+	if (z > s_len - start)
+		z = s_len - start;
+	buff = (char *)malloc(sizeof(char) * (z + 1));
+	if (!buff)
+		return (NULL);
+	i = 0;
+	while (i < z)
+	{
+		buff[i] = s[start + i];
+		i++;
+	}
+	buff[i] = '\0';
+	return (buff);
+}
