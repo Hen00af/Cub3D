@@ -2,7 +2,7 @@ NAME = cub3D
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -I./lib -I./libft
 SRC_DIR = ./src
-SRC = $(SRC_DIR)/main.c $(SRC_DIR)/parse.c
+SRC = $(SRC_DIR)/main.c $(SRC_DIR)/parse_args.c
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
 OBJ = $(SRC:.c=.o)

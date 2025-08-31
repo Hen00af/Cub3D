@@ -6,7 +6,7 @@
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 14:18:05 by shattori          #+#    #+#             */
-/*   Updated: 2025/06/21 15:32:12 by shattori         ###   ########.fr       */
+/*   Updated: 2025/08/31 21:49:28 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ size_t				ft_strlen(const char *in);
 size_t				ft_strlcpy(char *dest, const char *src, size_t len);
 char				*ft_strnstr(const char *haystack, const char *needle,
 						size_t len);
+int					ft_strcmp(const char *s1, const char *s2);
 char				*ft_strrchr(const char *s, int c);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
 int					ft_tolower(int c);

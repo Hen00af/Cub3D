@@ -1,54 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 18:27:03 by shattori          #+#    #+#             */
-/*   Updated: 2025/08/31 20:48:51 by shattori         ###   ########.fr       */
+/*   Updated: 2025/08/31 21:53:34 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-#define INVALID_ARGS 10
 
-int	is_mach(char *str1, char *str2)
+static int	has_cub_extension(const char *filename)
 {
-	int	len;
-	int	i;
+	size_t	len;
 
-	i = 0;
-	len = ft_strlen(str1) - 4;
-	while (str1[len] && str2[i])
-	{
-		if (str1[len++] != str2[i++])
-		{
-			printf("write a map in format .cub\n");
-			return (0);
-		}
-	}
-	return (1);
+	len = ft_strlen(filename);
+	if (len < 4)
+		return (FALSE);
+	return (ft_strcmp(filename + len - 4, ".cub") == 0);
 }
 
-int	is_valid(int ac, char **av)
+int	is_valid_args(int ac, char **av)
 {
 	int	fd;
 
 	if (ac != 2)
 	{
-		printf("write only 1 args\n");
-		exit(INVALID_ARGS);
+		ft_putstr_fd("Usage: ./cub3D {map.cub}\n", 2);
+		return (FALSE);
 	}
-	if (is_mach(av[1], ".cub"))
+	if (!has_cub_extension(av[1]))
 	{
-		fd = open(av[1], O_RDWR);
-		if (fd == -1)
-		{
-			printf("addprefix should be .cub\n");
-			exit(INVALID_ARGS);
-		}
-		return (0);
+		ft_putstr_fd("ERROR: a map shoud be in format .cub\n", 2);
+		return (FALSE);
 	}
-	exit(INVALID_ARGS);
+	fd = open(av[1], O_RDONLY);
+	if (fd == -1)
+	{
+		ft_putstr_fd("Error: can't open file\n", 2);
+		return (FALSE);
+	}
+	return (fd);
 }
