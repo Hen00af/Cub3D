@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   exit_invalid_maps.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/31 18:10:42 by shattori          #+#    #+#             */
-/*   Updated: 2025/08/31 22:45:52 by shattori         ###   ########.fr       */
+/*   Created: 2025/08/31 22:26:48 by shattori          #+#    #+#             */
+/*   Updated: 2025/08/31 22:52:13 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	main(int ac, char **av)
+int	failed_texture(int fd)
 {
-	t_map	map;
-	int		fd;
+	ft_putstr_fd("ERROR: invalid form of texture\n", 2);
+	close(fd);
+	return (FALSE);
+}
 
-	if (is_valid_args(ac, av) || is_valid_maps(av))
-		return (FALSE);
-	xopen(&fd, av[1], O_RDONLY);
-	init_maps(map, fd);
-	// minilib_init();
-	// minilibx_destroy();
-	return (0);
+int	failed_color(void)
+{
+	ft_putstr_fd("Error: Invalid color configuration\n", 2);
+	return (FALSE);
 }

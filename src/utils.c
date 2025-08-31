@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/31 18:10:42 by shattori          #+#    #+#             */
-/*   Updated: 2025/08/31 22:45:52 by shattori         ###   ########.fr       */
+/*   Created: 2025/08/31 22:13:42 by shattori          #+#    #+#             */
+/*   Updated: 2025/08/31 22:42:29 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	main(int ac, char **av)
+int	xopen(int *fd, char *filename, int flag)
 {
-	t_map	map;
-	int		fd;
-
-	if (is_valid_args(ac, av) || is_valid_maps(av))
+	*fd = open(filename, flag);
+	if (*fd == -1)
+	{
+		ft_putstr_fd("Error: can't open file\n", 2);
 		return (FALSE);
-	xopen(&fd, av[1], O_RDONLY);
-	init_maps(map, fd);
-	// minilib_init();
-	// minilibx_destroy();
-	return (0);
+	}
+	return (TRUE);
 }

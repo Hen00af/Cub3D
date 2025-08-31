@@ -1,31 +1,32 @@
 NAME = cub3D
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I./lib -I./libft
-SRC_DIR = ./src
-SRC = $(SRC_DIR)/main.c $(SRC_DIR)/parse_args.c
+CFLAGS = -Wall -Wextra -Werror -I./lib -I./libft -I./get_next_line
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
-OBJ = $(SRC:.c=.o)
-HEADER = ./lib/cub3D.h
+GNL_DIR = ./get_next_line
+GNL = $(GNL_DIR)/get_next_line.c $(GNL_DIR)/get_next_line_utils.c
+SRC_DIR = ./src
+SRC = $(SRC_DIR)/main.c $(SRC_DIR)/parse_args.c $(SRC_DIR)/parse_maps.c
+OBJ = $(SRC:.c=.o) $(GNL:.c=.o)
 
-all: $(NAME)
-
-$(NAME): $(OBJ) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME) -lm
+all: $(LIBFT) $(NAME)
 
 $(LIBFT):
-	$(MAKE) -C $(LIBFT_DIR)
+	make -C $(LIBFT_DIR)
 
-%.o: %.c $(HEADER)
+$(NAME): $(OBJ) $(LIBFT)
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
+
+%.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJ) 
-	$(MAKE) -C $(LIBFT_DIR) clean
+	rm -f $(OBJ)
+	make -C $(LIBFT_DIR) clean
 
 fclean: clean
 	rm -f $(NAME)
-	$(MAKE) -C $(LIBFT_DIR) fclean
+	make -C $(LIBFT_DIR) fclean
 
 re: fclean all
 

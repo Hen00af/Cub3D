@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   check_texture.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/31 18:10:42 by shattori          #+#    #+#             */
-/*   Updated: 2025/08/31 22:45:52 by shattori         ###   ########.fr       */
+/*   Created: 2025/08/31 22:20:57 by shattori          #+#    #+#             */
+/*   Updated: 2025/08/31 22:47:25 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	main(int ac, char **av)
-{
-	t_map	map;
-	int		fd;
 
-	if (is_valid_args(ac, av) || is_valid_maps(av))
-		return (FALSE);
-	xopen(&fd, av[1], O_RDONLY);
-	init_maps(map, fd);
-	// minilib_init();
-	// minilibx_destroy();
-	return (0);
+int	check_texture(int fd)
+{
+	// TODO: テクスチャファイルの存在チェック
+	// NO, SO, WE, EA の4つのテクスチャが定義されているかチェック
+	return (TRUE);
+}
+
+int	check_color(int fd)
+{
+	// TODO: 色の定義チェック
+	// F (floor) と C (ceiling) の色が正しく定義されているかチェック
+	return (TRUE);
 }
