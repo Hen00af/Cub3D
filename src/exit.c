@@ -6,14 +6,22 @@
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 08:06:33 by shattori          #+#    #+#             */
-/*   Updated: 2025/09/01 09:16:58 by shattori         ###   ########.fr       */
+/*   Updated: 2025/09/01 20:00:53 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	free_map(t_data *map)
+void	free_map(t_data *map)
 {
+	if (map->no_path)
+		free(map->no_path);
+	if (map->so_path)
+		free(map->so_path);
+	if (map->ea_path)
+		free(map->ea_path);
+	if (map->we_path)
+		free(map->we_path);
 }
 
 int	exit_fd(int *fd)
