@@ -6,33 +6,21 @@
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 21:57:20 by shattori          #+#    #+#             */
-/*   Updated: 2025/08/31 22:58:54 by shattori         ###   ########.fr       */
+/*   Updated: 2025/09/01 09:29:19 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	is_valid_maps(char **av)
+int	is_valid_maps(char **av, int *fd, t_data *map)
 {
-	int	fd;
-
-	if (!xopen(&fd, av[1], O_RDONLY))
+	if (!xopen(fd, av[1], O_RDONLY))
 		return (FALSE);
-	if (!check_texture(fd))
-	{
-		close(fd);
-		return (failed_texture());
-	}
-	if (!check_color(fd))
-	{
-		close(fd);
-		return (failed_color());
-	}
-	if (!check_map(fd))
-	{
-		close(fd);
-		return (faild_map());
-	}
-	close(fd);
+	if (!get_texture(fd, map))
+		return (failed_texture(fd, map));
+	if (!get_color(fd, map))
+		return (failed_color(fd, map));
+	if (!get_map(fd, map))
+		return (failed_map(fd, map));
 	return (TRUE);
 }

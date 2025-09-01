@@ -6,7 +6,7 @@ LIBFT = $(LIBFT_DIR)/libft.a
 GNL_DIR = ./get_next_line
 GNL = $(GNL_DIR)/get_next_line.c $(GNL_DIR)/get_next_line_utils.c
 SRC_DIR = ./src
-SRC = $(SRC_DIR)/main.c $(SRC_DIR)/parse_args.c $(SRC_DIR)/parse_maps.c
+SRC = $(SRC_DIR)/main.c $(SRC_DIR)/parse_args.c $(SRC_DIR)/parse_maps.c  $(SRC_DIR)/utils.c  $(SRC_DIR)/exit.c
 OBJ = $(SRC:.c=.o) $(GNL:.c=.o)
 
 all: $(LIBFT) $(NAME)

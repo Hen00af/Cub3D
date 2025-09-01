@@ -6,7 +6,7 @@
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 18:12:33 by shattori          #+#    #+#             */
-/*   Updated: 2025/08/31 22:52:19 by shattori         ###   ########.fr       */
+/*   Updated: 2025/09/01 09:29:19 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,23 @@
 # define FALSE 0
 # define TRUE 1
 
-typedef struct s_map
+typedef struct s_data
 {
-}	t_map;
+	char	*no_path;
+	char	*so_path;
+	char	*we_path;
+	char	*ea_path;
+}			t_data;
 
-int	is_valid_args(int ac, char **av);
-int	is_valid_maps(char **av);
-int	xopen(int *fd, char *filename, int flag);
-int	check_texture(int fd);
-int	check_color(int fd);
-int	failed_texture(void);
-int	failed_color(void);
-// int	check_map(int fd);
-// int	faild_map(void);
+int			exit_fd(int fd);
+int			is_valid_args(int ac, char **av);
+int			is_valid_maps(char **av, int *fd, t_data map);
+int			xopen(int *fd, char *filename, int flag);
+int			get_texture(int *fd, t_data *map);
+int			get_color(int *fd, t_data *map);
+int			get_map(int *fd, t_data *map);
+int			failed_texture(int *fd, t_data *map);
+int			failed_color(int *fd, t_data *map);
+int			failed_map(int *fd, t_data *map);
 // void	init_maps(t_map *map, int fd);
 #endif
