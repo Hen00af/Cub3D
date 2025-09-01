@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_invalid_maps.c                                :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/31 22:26:48 by shattori          #+#    #+#             */
-/*   Updated: 2025/09/01 09:29:19 by shattori         ###   ########.fr       */
+/*   Created: 2025/09/01 08:06:33 by shattori          #+#    #+#             */
+/*   Updated: 2025/09/01 09:16:58 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	failed_texture(int *fd, t_data *map)
+int	free_map(t_data *map)
 {
-	ft_putstr_fd("ERROR: invalid form of texture\n", 2);
-	return (exit_fd(fd));
 }
 
-int	failed_color(int *fd, t_data *map)
+int	exit_fd(int *fd)
 {
-	ft_putstr_fd("Error: Invalid color configuration\n", 2);
-	return (exit_fd(fd));
-}
-
-int	failed_map(int *fd, t_data *map)
-{
-	ft_putstr_fd("Error: Invalid color configuration\n", 2);
-	return (exit_fd(fd));
+	close(*fd);
+	return (FALSE);
 }

@@ -6,7 +6,7 @@
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 18:10:42 by shattori          #+#    #+#             */
-/*   Updated: 2025/08/31 22:45:52 by shattori         ###   ########.fr       */
+/*   Updated: 2025/09/01 09:16:58 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	main(int ac, char **av)
 {
-	t_map	map;
+	t_data	map;
 	int		fd;
 
-	if (is_valid_args(ac, av) || is_valid_maps(av))
+	if (is_valid_args(ac, av) || is_valid_maps(av, &fd, map))
 		return (FALSE);
 	xopen(&fd, av[1], O_RDONLY);
 	init_maps(map, fd);
