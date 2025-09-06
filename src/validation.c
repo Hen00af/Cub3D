@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/31 22:13:42 by shattori          #+#    #+#             */
-/*   Updated: 2025/09/06 16:03:33 by shattori         ###   ########.fr       */
+/*   Created: 2025/09/01 20:12:20 by shattori          #+#    #+#             */
+/*   Updated: 2025/09/06 15:39:06 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	xopen(int *fd, char *filename, int flag)
+int	is_valid_texture(t_data *data)
 {
-	*fd = open(filename, flag);
-	if (*fd == -1)
-	{
-		ft_putstr_fd("Error: can't open file\n", 2);
+	if (!ft_strncmp(data->no_path, "NO ./", 5))
 		return (FALSE);
-	}
+	if (!ft_strncmp(data->no_path, "SO ./", 5))
+		return (FALSE);
+	if (!ft_strncmp(data->no_path, "WE ./", 5))
+		return (FALSE);
+	if (!ft_strncmp(data->no_path, "EA ./", 5))
+		return (FALSE);
 	return (TRUE);
-}
-
-char	*to_not_empty_string(int *fd)
-{
-	char	*tmp;
-
-	tmp = get_next_line(*fd);
-	while (!tmp)
-		tmp = get_next_line(*fd);
-	return (tmp);
 }

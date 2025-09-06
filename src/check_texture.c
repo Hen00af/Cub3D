@@ -6,37 +6,28 @@
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 22:20:57 by shattori          #+#    #+#             */
-/*   Updated: 2025/09/01 09:28:11 by shattori         ###   ########.fr       */
+/*   Updated: 2025/09/06 17:44:09 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	get_texture(int *fd, t_data *map)
+// TODO: テクスチャファイルの存在チェック
+// NO, SO, WE, EA の4つのテクスチャが定義されているかチェック
+int	get_map_info(int *fd, t_data *data)
 {
-	int	i;
+	char	*get_str;
 
-	// TODO: テクスチャファイルの存在チェック
-	// NO, SO, WE, EA の4つのテクスチャが定義されているかチェック
-	i = 0;
-	while (i < 4)
-	{
-		map->no_path = get_next_line(*fd);
-		i++;
-	}
-	return (TRUE);
+	(void)to_not_empty_string(fd);
+	get_str = get_next_line(*fd);
+	if (is_valid_texture(data))
+		return (TRUE);
+	return (FALSE);
 }
 
-int	get_color(int *fd, t_data *map)
+// TODO: mapの定義をチェック
+// FloodFill を2回施行してクリア可能かどうかを検証
+int	get_map(int *fd, t_data *data)
 {
-	// TODO: 色の定義チェック
-	// F (floor) と C (ceiling) の色が正しく定義されているかチェック
-	return (TRUE);
-}
-
-int	get_map(int *fd, t_data *map)
-{
-	// TODO: mapの定義をチェック
-	// FloodFill を2回施行してクリア可能かどうかを検証
 	return (TRUE);
 }
