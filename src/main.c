@@ -6,7 +6,7 @@
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 18:10:42 by shattori          #+#    #+#             */
-/*   Updated: 2025/09/06 15:57:54 by shattori         ###   ########.fr       */
+/*   Updated: 2025/09/08 14:45:50 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 
 int	main(int ac, char **av)
 {
-	t_data	map;
+	t_cub	cub;
 	int		fd;
 
-	if (is_valid_args(ac, av) || is_valid_maps(av, &fd, map))
-		return (FALSE);
-	xopen(&fd, av[1], O_RDONLY);
-	init_maps(&map, fd);
+	fd = 0;
+	init_maps(&cub.data);
+	if (!is_valid_args(ac, av) || !is_valid_maps(av, &fd, &cub.data))
+		return (1);
+	printf("Map parsing completed successfully!\n");
+	close(fd);
 	// minilib_init();
 	// minilibx_destroy();
 	return (0);
