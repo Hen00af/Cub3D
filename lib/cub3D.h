@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nando <nando@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 18:12:33 by shattori          #+#    #+#             */
-/*   Updated: 2025/09/08 14:46:39 by shattori         ###   ########.fr       */
+/*   Updated: 2025/09/13 16:55:49 by nando            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,18 @@ typedef struct s_data
 	char			*ea_path;
 	int				floor_color;
 	int				ceiling_color;
+
 }					t_data;
+
 
 typedef struct s_bool_map_data
 {
-	int				exist_we_path;
-	int				exist_ea_path;
-	int				exist_no_path;
-	int				exist_so_path;
-	int				exist_floor_path;
-	int				exist_color_path;
+	int exist_we_path;
+	int exist_ea_path;
+	int exist_no_path;
+	int exist_so_path;
+	int exist_floor_path;
+	int exist_color_path;
 }					t_bool_map_data;
 
 typedef struct s_cub
