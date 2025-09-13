@@ -6,7 +6,7 @@
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 22:20:57 by shattori          #+#    #+#             */
-/*   Updated: 2025/09/13 15:41:43 by shattori         ###   ########.fr       */
+/*   Updated: 2025/09/13 15:45:30 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,10 @@ int	get_map(int *fd, t_data *data)
 	if (line)
 		free(line);
 	(void)data;
-	return (map_started ? TRUE : FALSE);
+	if(map_started)
+		return (TRUE);
+	else
+		return (FALSE);
 }
 
 void	separate_args(t_data *data, char *str)
@@ -99,7 +102,9 @@ int	parse_color(char *str)
 	int		color;
 	char	comma[2];
 
-	int r, g, b;
+	int r;
+	int g;
+	int b;
 	comma[0] = ',';
 	comma[1] = '\0';
 	while (*str == ' ' || *str == '\t')
@@ -144,7 +149,7 @@ int	is_valid_texture_file(char *path)
 		return (FALSE);
 	len = ft_strlen(path);
 	if (len < 4 || ft_strncmp(path + len - 4, ".xpm", 4) != 0)
-		return (TRUE); 
+		return (TRUE);
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 		return (TRUE);
