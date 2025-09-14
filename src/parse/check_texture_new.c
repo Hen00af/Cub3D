@@ -6,7 +6,7 @@
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 22:20:57 by shattori          #+#    #+#             */
-/*   Updated: 2025/09/13 15:45:30 by shattori         ###   ########.fr       */
+/*   Updated: 2025/09/14 12:57:44 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,14 @@ int	get_map_info(int *fd, t_data *data)
 	int		cnt;
 
 	cnt = 0;
-	str = get_next_line(*fd);
-	while (str && cnt < 6)
+	while (cnt < 6)
 	{
+		str = get_next_line(*fd);
+		if (!str)
+			break ;
 		if (str[0] == '\n' || str[0] == '\0')
 		{
 			free(str);
-			str = get_next_line(*fd);
 			continue ;
 		}
 		if (str[0] == '1' || str[0] == '0' || str[0] == ' ')
@@ -36,11 +37,8 @@ int	get_map_info(int *fd, t_data *data)
 		}
 		separate_args(data, str);
 		free(str);
-		str = get_next_line(*fd);
 		cnt++;
 	}
-	if (str)
-		free(str);
 	if (is_valid_texture(data))
 		return (TRUE);
 	return (FALSE);
@@ -51,33 +49,37 @@ int	get_map_info(int *fd, t_data *data)
 int	get_map(int *fd, t_data *data)
 {
 	char	*line;
-	int		map_started;
+	int		count;
+	char	**tmp;
+	int		i;
 
-	map_started = 0;
-	line = get_next_line(*fd);
-	while (line)
+	data->map = NULL;
+	count = 0;
+	while ((line = get_next_line(*fd)))
 	{
-		if (line[0] == '\n' || line[0] == '\0')
+		if (line[0] == '\n')
 		{
 			free(line);
-			line = get_next_line(*fd);
 			continue ;
 		}
-		if (line[0] == '1' || line[0] == '0' || line[0] == ' ')
+		tmp = malloc(sizeof(char *) * (count + 2));
+		if (!tmp)
+			return (FALSE);
+		i = 0;
+		while (i < count)
 		{
-			map_started = 1;
-			printf("Map line: %s", line);
+			tmp[i] = data->map[i];
+			i++;
 		}
-		free(line);
-		line = get_next_line(*fd);
+		tmp[count] = line;
+		tmp[count + 1] = NULL;
+		if (data->map)
+			free(data->map);
+		data->map = tmp;
+		printf("%s\n", data->map[count]);
+		count++;
 	}
-	if (line)
-		free(line);
-	(void)data;
-	if(map_started)
-		return (TRUE);
-	else
-		return (FALSE);
+	return (TRUE);
 }
 
 void	separate_args(t_data *data, char *str)
@@ -101,28 +103,23 @@ int	parse_color(char *str)
 	char	**rgb_parts;
 	int		color;
 	char	comma[2];
+	int		rgb[3];
 
-	int r;
-	int g;
-	int b;
 	comma[0] = ',';
 	comma[1] = '\0';
 	while (*str == ' ' || *str == '\t')
 		str++;
 	rgb_parts = ft_split(str, comma);
 	if (!rgb_parts || !rgb_parts[0] || !rgb_parts[1] || !rgb_parts[2])
-	{
-		if (rgb_parts)
-			free_split(rgb_parts);
-		return (-1);
-	}
-	r = ft_atoi(rgb_parts[0]);
-	g = ft_atoi(rgb_parts[1]);
-	b = ft_atoi(rgb_parts[2]);
+		return (free_split(rgb_parts), -1);
+	rgb[0] = ft_atoi(rgb_parts[0]);
+	rgb[1] = ft_atoi(rgb_parts[1]);
+	rgb[2] = ft_atoi(rgb_parts[2]);
 	free_split(rgb_parts);
-	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
+	if (rgb[0] < 0 || rgb[0] > 255 || rgb[1] < 0 || rgb[1] > 255 || rgb[2] < 0
+		|| rgb[2] > 255)
 		return (-1);
-	color = (r << 16) | (g << 8) | b;
+	color = (rgb[0] << 16) | (rgb[1] << 8) | rgb[2];
 	return (color);
 }
 
@@ -165,4 +162,29 @@ void	init_maps(t_data *data)
 	data->ea_path = NULL;
 	data->floor_color = -1;
 	data->ceiling_color = -1;
+	data->map = NULL;
+}
+
+void	cleanup_data(t_data *data)
+{
+	int	i;
+
+	if (data->no_path)
+		free(data->no_path);
+	if (data->so_path)
+		free(data->so_path);
+	if (data->we_path)
+		free(data->we_path);
+	if (data->ea_path)
+		free(data->ea_path);
+	if (data->map)
+	{
+		i = 0;
+		while (data->map[i])
+		{
+			free(data->map[i]);
+			i++;
+		}
+		free(data->map);
+	}
 }
