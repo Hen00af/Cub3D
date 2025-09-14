@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nando <nando@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 18:12:33 by shattori          #+#    #+#             */
-/*   Updated: 2025/09/13 16:55:49 by nando            ###   ########.fr       */
+/*   Updated: 2025/09/14 16:03:53 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,18 @@ typedef struct s_data
 	char			*ea_path;
 	int				floor_color;
 	int				ceiling_color;
-
+	char			**map;
+	int plyer_dir[2]; // [0]:x , [1]:y
 }					t_data;
-
 
 typedef struct s_bool_map_data
 {
-	int exist_we_path;
-	int exist_ea_path;
-	int exist_no_path;
-	int exist_so_path;
-	int exist_floor_path;
-	int exist_color_path;
+	int				exist_we_path;
+	int				exist_ea_path;
+	int				exist_no_path;
+	int				exist_so_path;
+	int				exist_floor_path;
+	int				exist_color_path;
 }					t_bool_map_data;
 
 typedef struct s_cub
@@ -62,4 +62,5 @@ int					is_valid_texture(t_data *data);
 int					is_valid_texture_file(char *path);
 int					parse_color(char *str);
 void				separate_args(t_data *data, char *str);
+void				cleanup_data(t_data *data);
 #endif
