@@ -6,7 +6,7 @@
 /*   By: nando <nando@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 18:12:33 by shattori          #+#    #+#             */
-/*   Updated: 2025/09/13 20:02:00 by nando            ###   ########.fr       */
+/*   Updated: 2025/09/13 16:55:49 by nando            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ typedef struct s_data
 	int				floor_color;
 	int				ceiling_color;
 }					t_data;
-
 
 typedef struct s_bool_map_data
 {
