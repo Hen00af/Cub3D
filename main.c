@@ -6,7 +6,7 @@
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 18:10:42 by shattori          #+#    #+#             */
-/*   Updated: 2025/09/08 14:45:50 by shattori         ###   ########.fr       */
+/*   Updated: 2025/09/14 12:51:57 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	main(int ac, char **av)
 		return (1);
 	printf("Map parsing completed successfully!\n");
 	close(fd);
+	cleanup_data(&cub.data);
 	// minilib_init();
 	// minilibx_destroy();
 	return (0);
