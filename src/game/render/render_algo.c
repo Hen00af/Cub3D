@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_game.c                                        :+:      :+:    :+:   */
+/*   render_algo.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nando <nando@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/13 16:02:04 by nando             #+#    #+#             */
-/*   Updated: 2025/09/13 18:19:34 by nando            ###   ########.fr       */
+/*   Created: 2025/09/14 19:13:48 by nando             #+#    #+#             */
+/*   Updated: 2025/09/14 19:24:39 by nando            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "../lib/cub3D.h"
-#include "./game.h"
-#include "./minilibx-Linux/mlx.h"
+#include "../game.h"
 
-# define WIN_W 960
-# define WIN_H 720
-
-void	init_game(t_game_data *game)
+void	calculate_ray(t_game_data *g, int x)
 {
-	game->mlx = mlx_init();
-	game->win = mlx_new_window(game->mlx, WIN_W, WIN_H, "Cub3D");
-	game->img.img = mlx_new_image(game->mlx, WIN_W, WIN_H);
-	game->img.address = mlx_get_data_addr();
-	mlx_loop(game->mlx);
+	double	camera_x;
+
+	//カメラ空間のX座標を正規化したやつ
+	camera_x = 2 * x / WIN_W - 1;
+	//光線のベクトルを算出
+	g->ray.ray_dir_x = g->player.dir_vec_x + g->player.plane_x * camera_x;
+	g->ray.ray_dir_x = g->player.dir_vec_y + g->player.plane_y * camera_x;
+}
+
+void	dda(t_game_data *g)
+{
+	
 }
