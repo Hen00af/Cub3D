@@ -6,7 +6,7 @@
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 18:12:33 by shattori          #+#    #+#             */
-/*   Updated: 2025/09/14 16:03:53 by shattori         ###   ########.fr       */
+/*   Updated: 2025/09/14 20:04:01 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,6 @@ int					is_valid_texture_file(char *path);
 int					parse_color(char *str);
 void				separate_args(t_data *data, char *str);
 void				cleanup_data(t_data *data);
+void				free_map(t_data *map);
+void				exit_cub(int *fd, t_cub *cub);
 #endif
