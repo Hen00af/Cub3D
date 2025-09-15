@@ -6,7 +6,7 @@
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 22:20:57 by shattori          #+#    #+#             */
-/*   Updated: 2025/09/14 12:57:44 by shattori         ###   ########.fr       */
+/*   Updated: 2025/09/15 18:43:35 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // TODO: テクスチャファイルの存在チェック
 // NO, SO, WE, EA の4つのテクスチャが定義されているかチェック
-int	get_map_info(int *fd, t_data *data)
+int	get_map_info(int *fd, t_cub *cub)
 {
 	char	*str;
 	int		cnt;
@@ -35,68 +35,18 @@ int	get_map_info(int *fd, t_data *data)
 			free(str);
 			break ;
 		}
-		separate_args(data, str);
+		separate_args(&cub->data, str);
 		free(str);
 		cnt++;
 	}
-	if (is_valid_texture(data))
+	if (is_valid_texture(&cub->data))
 		return (TRUE);
 	return (FALSE);
 }
 
 // TODO: mapの定義をチェック
 // FloodFill を2回施行してクリア可能かどうかを検証　<ー　いらない
-int	get_map(int *fd, t_data *data)
-{
-	char	*line;
-	int		count;
-	char	**tmp;
-	int		i;
 
-	data->map = NULL;
-	count = 0;
-	while ((line = get_next_line(*fd)))
-	{
-		if (line[0] == '\n')
-		{
-			free(line);
-			continue ;
-		}
-		tmp = malloc(sizeof(char *) * (count + 2));
-		if (!tmp)
-			return (FALSE);
-		i = 0;
-		while (i < count)
-		{
-			tmp[i] = data->map[i];
-			i++;
-		}
-		tmp[count] = line;
-		tmp[count + 1] = NULL;
-		if (data->map)
-			free(data->map);
-		data->map = tmp;
-		printf("%s\n", data->map[count]);
-		count++;
-	}
-	return (TRUE);
-}
-
-void	separate_args(t_data *data, char *str)
-{
-	if (!ft_strncmp(str, "NO ", 3))
-		data->no_path = ft_strtrim(str + 3, " \t\n");
-	else if (!ft_strncmp(str, "SO ", 3))
-		data->so_path = ft_strtrim(str + 3, " \t\n");
-	else if (!ft_strncmp(str, "WE ", 3))
-		data->we_path = ft_strtrim(str + 3, " \t\n");
-	else if (!ft_strncmp(str, "EA ", 3))
-		data->ea_path = ft_strtrim(str + 3, " \t\n");
-	else if (!ft_strncmp(str, "F ", 2))
-		data->floor_color = parse_color(str + 2);
-	else if (!ft_strncmp(str, "C ", 2))
-		data->ceiling_color = parse_color(str + 2);
-}
 
 int	parse_color(char *str)
 {
@@ -123,20 +73,6 @@ int	parse_color(char *str)
 	return (color);
 }
 
-int	is_valid_texture(t_data *data)
-{
-	if (!data->no_path || !data->so_path || !data->we_path || !data->ea_path)
-		return (FALSE);
-	if (data->floor_color == -1 || data->ceiling_color == -1)
-		return (FALSE);
-	if (!is_valid_texture_file(data->no_path)
-		|| !is_valid_texture_file(data->so_path)
-		|| !is_valid_texture_file(data->we_path)
-		|| !is_valid_texture_file(data->ea_path))
-		return (FALSE);
-	return (TRUE);
-}
-
 int	is_valid_texture_file(char *path)
 {
 	int	fd;
@@ -146,7 +82,7 @@ int	is_valid_texture_file(char *path)
 		return (FALSE);
 	len = ft_strlen(path);
 	if (len < 4 || ft_strncmp(path + len - 4, ".xpm", 4) != 0)
-		return (TRUE);
+		return (FALSE);
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 		return (TRUE);
@@ -163,6 +99,7 @@ void	init_maps(t_data *data)
 	data->floor_color = -1;
 	data->ceiling_color = -1;
 	data->map = NULL;
+	init_player(data);
 }
 
 void	cleanup_data(t_data *data)
@@ -187,4 +124,47 @@ void	cleanup_data(t_data *data)
 		}
 		free(data->map);
 	}
+}
+
+void	init_player(t_data *data)
+{
+	data->player_x = -1;
+	data->player_y = -1;
+	data->player_dir = '\0';
+}
+
+int	is_player_char(char c)
+{
+	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
+}
+
+int	find_player(t_data *data)
+{
+	int	y;
+	int	x;
+	int	player_count;
+
+	if (!data->map)
+		return (FALSE);
+	player_count = 0;
+	y = 0;
+	while (data->map[y])
+	{
+		x = 0;
+		while (data->map[y][x])
+		{
+			if (is_player_char(data->map[y][x]))
+			{
+				data->player_x = x;
+				data->player_y = y;
+				data->player_dir = data->map[y][x];
+				player_count++;
+			}
+			x++;
+		}
+		y++;
+	}
+	if (player_count != 1)
+		return (FALSE);
+	return (TRUE);
 }

@@ -6,7 +6,7 @@
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 08:06:33 by shattori          #+#    #+#             */
-/*   Updated: 2025/09/14 20:04:00 by shattori         ###   ########.fr       */
+/*   Updated: 2025/09/15 17:56:28 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,14 @@ void	free_map(t_data *map)
 
 int	exit_fd(int *fd)
 {
-	close(*fd);
+	if (*fd)
+		close(*fd);
 	return (FALSE);
 }
 
-void	exit_cub(int *fd, t_cub *cub)
+int	exit_cub(int *fd, t_cub *cub)
 {
 	exit_fd(fd);
 	free_map(&cub->data);
+	return (FALSE);
 }

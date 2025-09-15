@@ -19,7 +19,8 @@ SRC = main.c \
       $(PARSE_DIR)/exit.c \
       $(PARSE_DIR)/exit_invalid_maps.c \
       $(PARSE_DIR)/check_texture_new.c \
-      $(RENDERING_DIR)/init_game.c
+	  $(PARSE_DIR)/get_map_info.c \
+	  $(PARSE_DIR)/get_map.c \
 
 OBJ_DIR = ./obj
 DEPS_DIR = ./deps
