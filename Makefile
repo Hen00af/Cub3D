@@ -21,6 +21,7 @@ SRC = main.c \
       $(PARSE_DIR)/check_texture_new.c \
 	  $(PARSE_DIR)/get_map_info.c \
 	  $(PARSE_DIR)/get_map.c \
+	  $(PARSE_DIR)/valid_map.c \
 
 OBJ_DIR = ./obj
 DEPS_DIR = ./deps

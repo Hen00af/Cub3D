@@ -6,7 +6,7 @@
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 22:20:57 by shattori          #+#    #+#             */
-/*   Updated: 2025/09/16 16:33:17 by shattori         ###   ########.fr       */
+/*   Updated: 2025/09/16 17:17:28 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,38 +131,3 @@ void	init_player(t_data *data)
 	data->player_dir = '\0';
 }
 
-int	is_player_char(char c)
-{
-	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
-}
-
-int	find_player(t_data *data)
-{
-	int	y;
-	int	x;
-	int	player_count;
-
-	if (!data->map)
-		return (FALSE);
-	player_count = 0;
-	y = 0;
-	while (data->map[y])
-	{
-		x = 0;
-		while (data->map[y][x])
-		{
-			if (is_player_char(data->map[y][x]))
-			{
-				data->player_x = x;
-				data->player_y = y;
-				data->player_dir = data->map[y][x];
-				player_count++;
-			}
-			x++;
-		}
-		y++;
-	}
-	if (player_count != 1)
-		return (FALSE);
-	return (TRUE);
-}

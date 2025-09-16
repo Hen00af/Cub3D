@@ -55,7 +55,9 @@ void				separate_args(t_data *data, char *str);
 void				cleanup_data(t_data *data);
 void				free_map(t_data *map);
 int					exit_cub(int *fd, t_cub *cub);
-int					find_player(t_data *data);
 int					is_player_char(char c);
 void				init_player(t_data *data);
+int					is_valid_element(char **av, int *fd, t_cub *cub);
+void				find_player(int y, char *line, t_data *data);
+int					is_valid_map(char **map);
 #endif
