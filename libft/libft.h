@@ -6,7 +6,7 @@
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 14:18:05 by shattori          #+#    #+#             */
-/*   Updated: 2025/08/31 21:49:28 by shattori         ###   ########.fr       */
+/*   Updated: 2025/09/16 15:13:52 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ void				add_front(t_DList *list, int data);
 t_DList				*create_dlist(void);
 t_DNode				*create_node(int data);
 void				free_list(t_DList *list);
+char				*ft_realloc(char *ptr, size_t new_size);
 char				**free_split(char **str);
 
 #endif /* LIBFT_H */

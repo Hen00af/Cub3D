@@ -6,11 +6,21 @@
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 22:20:57 by shattori          #+#    #+#             */
-/*   Updated: 2025/09/15 18:43:35 by shattori         ###   ########.fr       */
+/*   Updated: 2025/09/16 16:33:17 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+char	*get_next_str(int fd)
+{
+	char	*str;
+
+	str = get_next_line(fd);
+	while (str[0] == '\0' || str[0] == '\n')
+		str = get_next_line(fd);
+	return (str);
+}
 
 // TODO: テクスチャファイルの存在チェック
 // NO, SO, WE, EA の4つのテクスチャが定義されているかチェック
@@ -20,21 +30,13 @@ int	get_map_info(int *fd, t_cub *cub)
 	int		cnt;
 
 	cnt = 0;
+	printf("get_map_info\n");
 	while (cnt < 6)
 	{
-		str = get_next_line(*fd);
+		str = get_next_str(*fd);
 		if (!str)
 			break ;
-		if (str[0] == '\n' || str[0] == '\0')
-		{
-			free(str);
-			continue ;
-		}
-		if (str[0] == '1' || str[0] == '0' || str[0] == ' ')
-		{
-			free(str);
-			break ;
-		}
+		printf("%s", str);
 		separate_args(&cub->data, str);
 		free(str);
 		cnt++;
@@ -45,9 +47,7 @@ int	get_map_info(int *fd, t_cub *cub)
 }
 
 // TODO: mapの定義をチェック
-// FloodFill を2回施行してクリア可能かどうかを検証　<ー　いらない
-
-
+// FloodFill を2回施行してクリア可能かどうかを検証
 int	parse_color(char *str)
 {
 	char	**rgb_parts;
@@ -81,8 +81,6 @@ int	is_valid_texture_file(char *path)
 	if (!path)
 		return (FALSE);
 	len = ft_strlen(path);
-	if (len < 4 || ft_strncmp(path + len - 4, ".xpm", 4) != 0)
-		return (FALSE);
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 		return (TRUE);

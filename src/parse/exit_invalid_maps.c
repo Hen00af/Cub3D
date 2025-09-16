@@ -6,7 +6,7 @@
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 22:26:48 by shattori          #+#    #+#             */
-/*   Updated: 2025/09/15 18:45:12 by shattori         ###   ########.fr       */
+/*   Updated: 2025/09/16 11:26:47 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	failed_texture(int *fd, t_cub *cub)
 {
 	ft_putstr_fd("ERROR: invalid form of texture\n", 2);
-	return (exit_fd(fd));
+	return (exit_cub(fd,cub));
 }
 
 int	failed_color(int *fd, t_cub *cub)

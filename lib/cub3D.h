@@ -37,6 +37,7 @@ typedef struct s_cub
 	t_data			data;
 	t_bool_map_data	map_data;
 }					t_cub;
+
 int					exit_fd(int *fd);
 int					is_valid_args(int ac, char **av);
 int					is_valid_maps(char **av, int *fd, t_cub *cub);

@@ -1,4 +1,4 @@
-./obj
-./deps
-./gitignore
-./cub3D
+# .gitignore
+obj/
+deps/
+cub3D

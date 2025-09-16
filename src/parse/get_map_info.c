@@ -29,4 +29,3 @@ void	separate_args(t_data *data, char *str)
 	else if (!ft_strncmp(str, "C ", 2))
 		data->ceiling_color = parse_color(str + 2);
 }
-

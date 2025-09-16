@@ -2,38 +2,32 @@
 
 int	get_map(int *fd, t_data *data)
 {
-	char	*line;
 	int		count;
-	char	**tmp;
 	int		i;
+	char	**new_map;
+	char	*line;
 
 	data->map = NULL;
 	count = 0;
 	line = get_next_line(*fd);
 	while (line)
 	{
-		if (line[0] == '\n')
-		{
-			free(line);
-			continue ;
-		}
-		tmp = malloc(sizeof(char *) * (count + 2));
-		if (!tmp)
+		new_map = malloc((count + 2) * sizeof(char *));
+		if (!new_map)
 			return (FALSE);
 		i = 0;
 		while (i < count)
 		{
-			tmp[i] = data->map[i];
+			new_map[i] = data->map[i];
 			i++;
 		}
-		tmp[count] = line;
-		tmp[count + 1] = NULL;
-		if (data->map)
-			free(data->map);
-		data->map = tmp;
-		printf("%s\n", data->map[count]);
-		count++;
+		new_map[count] = ft_strdup(line);
+		new_map[count + 1] = NULL;
+		free(data->map);
+		data->map = new_map;
+		free(line);
 		line = get_next_line(*fd);
+		count++;
 	}
 	return (TRUE);
 }
