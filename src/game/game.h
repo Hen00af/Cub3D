@@ -6,7 +6,7 @@
 /*   By: nando <nando@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 16:08:45 by nando             #+#    #+#             */
-/*   Updated: 2025/09/14 19:38:35 by nando            ###   ########.fr       */
+/*   Updated: 2025/09/16 10:48:13 by nando            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,21 @@ typedef struct s_player
 {
 	double			pos_x;
 	double			pos_y;
-	double			dir_vec_x;
-	double			dir_vec_y;
+	double			dir_x;
+	double			dir_y;
 	double			plane_x;
 	double			plane_y;
 }					t_player;
 
 typedef struct s_ray
 {
-	double			ray_dir_x;
-	double			ray_dir_y;
+	double			dir_x;
+	double			dir_y;
 }					t_ray;
 
 typedef struct s_dda
 {
+	t_ray			ray;
 	int				map_x;
 	int				map_y;
 	double			side_dist_x;
@@ -72,7 +73,7 @@ typedef struct s_game_data
 	void			*win;
 	t_image_data	img;
 	t_player		player;
-	t_ray			ray;
+	t_dda			dda;
 }					t_game_data;
 
 void				init_game(t_game_data *game);
