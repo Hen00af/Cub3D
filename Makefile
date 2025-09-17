@@ -19,7 +19,9 @@ SRC = main.c \
       $(PARSE_DIR)/exit.c \
       $(PARSE_DIR)/exit_invalid_maps.c \
       $(PARSE_DIR)/check_texture_new.c \
-      $(RENDERING_DIR)/init_game.c
+	  $(PARSE_DIR)/get_map_info.c \
+	  $(PARSE_DIR)/get_map.c \
+	  $(PARSE_DIR)/valid_map.c \
 
 OBJ_DIR = ./obj
 DEPS_DIR = ./deps
@@ -52,6 +54,13 @@ $(OBJ_DIR)/%.o: $(RENDERING_DIR)/%.c | $(OBJ_DIR) $(DEPS_DIR)
 $(OBJ_DIR)/%.o: $(GNL_DIR)/%.c | $(OBJ_DIR) $(DEPS_DIR)
 	$(CC) $(CFLAGS) -MMD -MP -MF $(DEPS_DIR)/$*.d -c $< -o $@
 
+debug: CFLAGS += -g
+debug: all
+
+valgrind: $(NAME)
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME) test.cub
+
+
 clean:
 	rm -f $(OBJ) $(DEP)
 	rm -rf $(OBJ_DIR) $(DEPS_DIR)
@@ -65,4 +74,4 @@ re: fclean all
 
 -include $(DEP)
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re debug valgrind

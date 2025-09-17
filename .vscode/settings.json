@@ -3,6 +3,7 @@
 		"string.h": "c",
 		"libft.h": "c",
 		"cub3d.h": "c",
-		"stdlib.h": "c"
+		"stdlib.h": "c",
+		"cstdlib": "c"
 	}
 }

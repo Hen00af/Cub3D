@@ -17,7 +17,9 @@ typedef struct s_data
 	int				floor_color;
 	int				ceiling_color;
 	char			**map;
-	int plyer_dir[2]; // [0]:x , [1]:y
+	int player_x;    // プレイヤーのX座標
+	int player_y;    // プレイヤーのY座標
+	char player_dir; // プレイヤーの向き (N/S/E/W)
 }					t_data;
 
 typedef struct s_bool_map_data
@@ -38,17 +40,24 @@ typedef struct s_cub
 
 int					exit_fd(int *fd);
 int					is_valid_args(int ac, char **av);
-int					is_valid_maps(char **av, int *fd, t_data *data);
+int					is_valid_maps(char **av, int *fd, t_cub *cub);
 int					xopen(int *fd, char *filename, int flag);
 int					get_map(int *fd, t_data *data);
-int					failed_texture(int *fd, t_data *data);
-int					failed_color(int *fd, t_data *data);
-int					failed_map(int *fd, t_data *data);
+int					get_map_info(int *fd, t_cub *cub);
+int					failed_texture(int *fd, t_cub *cub);
+int					failed_color(int *fd, t_cub *cub);
+int					failed_map(int *fd, t_cub *cub);
 void				init_maps(t_data *data);
-int					get_map_info(int *fd, t_data *data);
 int					is_valid_texture(t_data *data);
 int					is_valid_texture_file(char *path);
 int					parse_color(char *str);
 void				separate_args(t_data *data, char *str);
 void				cleanup_data(t_data *data);
+void				free_map(t_data *map);
+int					exit_cub(int *fd, t_cub *cub);
+int					is_player_char(char c);
+void				init_player(t_data *data);
+int					is_valid_element(char **av, int *fd, t_cub *cub);
+void				find_player(int y, char *line, t_data *data);
+int					is_valid_map(char **map);
 #endif
