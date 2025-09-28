@@ -5,7 +5,7 @@
 		###!is_valid_element(av, &fd, &cub)
 			指定されたファイルの実行可能性を調べる。
 # game
-	##主にminilibxを用いた、レイトレーシングを使用したレンダリングをいます。
+	##主にminilibxを用いた、レイトレーシングを使用したレンダリングを行います。
 		###<function name>
 			<function explanation>
 	
