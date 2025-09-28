@@ -40,13 +40,13 @@ typedef struct s_cub
 
 int					exit_fd(int *fd);
 int					is_valid_args(int ac, char **av);
-int					is_valid_maps(char **av, int *fd, t_cub *cub);
+int					is_valid_map(char **map, t_data *data);
 int					xopen(int *fd, char *filename, int flag);
 int					get_map(int *fd, t_data *data);
 int					get_map_info(int *fd, t_cub *cub);
 int					failed_texture(int *fd, t_cub *cub);
 int					failed_color(int *fd, t_cub *cub);
-int					failed_map(int *fd, t_cub *cub);
+int					invalid_element(int *fd, t_cub *cub);
 void				init_maps(t_data *data);
 int					is_valid_texture(t_data *data);
 int					is_valid_texture_file(char *path);
@@ -59,5 +59,4 @@ int					is_player_char(char c);
 void				init_player(t_data *data);
 int					is_valid_element(char **av, int *fd, t_cub *cub);
 void				find_player(int y, char *line, t_data *data);
-int					is_valid_map(char **map);
 #endif

@@ -10,13 +10,14 @@ GNL = $(GNL_DIR)/get_next_line.c $(GNL_DIR)/get_next_line_utils.c
 
 SRC_DIR = ./src
 PARSE_DIR = $(SRC_DIR)/parse
+MISC_DIR = $(SRC_DIR)/misc
 RENDERING_DIR = $(SRC_DIR)/rendering
 
 SRC = main.c \
       $(PARSE_DIR)/parse_args.c \
       $(PARSE_DIR)/parse_maps.c \
       $(PARSE_DIR)/utils.c \
-      $(PARSE_DIR)/exit.c \
+      $(MISC_DIR)/exit.c \
       $(PARSE_DIR)/exit_invalid_maps.c \
       $(PARSE_DIR)/check_texture_new.c \
 	  $(PARSE_DIR)/get_map_info.c \
@@ -48,6 +49,8 @@ $(OBJ_DIR)/%.o: %.c | $(OBJ_DIR) $(DEPS_DIR)
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR) $(DEPS_DIR)
 	$(CC) $(CFLAGS) -MMD -MP -MF $(DEPS_DIR)/$*.d -c $< -o $@
 $(OBJ_DIR)/%.o: $(PARSE_DIR)/%.c | $(OBJ_DIR) $(DEPS_DIR)
+	$(CC) $(CFLAGS) -MMD -MP -MF $(DEPS_DIR)/$*.d -c $< -o $@
+$(OBJ_DIR)/%.o: $(MISC_DIR)/%.c | $(OBJ_DIR) $(DEPS_DIR)
 	$(CC) $(CFLAGS) -MMD -MP -MF $(DEPS_DIR)/$*.d -c $< -o $@
 $(OBJ_DIR)/%.o: $(RENDERING_DIR)/%.c | $(OBJ_DIR) $(DEPS_DIR)
 	$(CC) $(CFLAGS) -MMD -MP -MF $(DEPS_DIR)/$*.d -c $< -o $@
