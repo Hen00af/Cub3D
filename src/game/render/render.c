@@ -6,7 +6,7 @@
 /*   By: nando <nando@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 20:07:49 by nando             #+#    #+#             */
-/*   Updated: 2025/09/14 19:16:14 by nando            ###   ########.fr       */
+/*   Updated: 2025/09/30 17:27:51 by nando            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,13 @@ void	rendering_ceiling_and_floor(t_game_data *g)
 	}
 }
 
-void	rendering_wall_slice(t_game_data *g)
+void	rendering_wall_slice(t_game_data *g, int x)
 {
+	int y;
+
+	y = g->draw_start;
+	while(y++ < g->draw_end)
+		put_pixel_to_canvas(&g->img, x, y, WALL_COLOR);
 }
 
 void	rendering_walls(t_game_data *g)
@@ -53,7 +58,8 @@ void	rendering_walls(t_game_data *g)
 	{
 		calculate_ray(g, x);
 		dda(g);
-		rendering_wall_slice(g);
+		calculate_the_wall_height(g);
+		rendering_wall_slice(g, x);
 		x++;
 	}
 }

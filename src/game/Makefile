@@ -5,7 +5,13 @@ CFLAGS = -Wall -Wextra -Werror -I./lib -I./libft -I./get_next_line
 
 MLXFLAGS = -L minilibx-Linux -lmlx -lXext -lX11 -lm
 
-SRC = $(wildcard ./*.c)
+SRC = main.c \
+      init/init_game.c \
+      key_operation/handle_key.c \
+      render/render_algo.c \
+      render/render.c \
+      utils/utils.c
+	  
 OBJDIR = obj
 OBJ = $(patsubst %.c,$(OBJDIR)/%.o,$(SRC))
 
@@ -14,11 +20,10 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) $(MLXFLAGS) -o $(NAME)
 
-$(OBJDIR)/%.o: %.c | $(OBJDIR)
+$(OBJDIR)/%.o: %.c
+	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(OBJDIR):
-	mkdir -p $(OBJDIR)
 
 clean:
 	rm -rf $(OBJDIR)

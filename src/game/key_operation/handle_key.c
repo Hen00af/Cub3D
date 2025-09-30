@@ -6,7 +6,7 @@
 /*   By: nando <nando@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 19:40:41 by nando             #+#    #+#             */
-/*   Updated: 2025/09/14 19:24:04 by nando            ###   ########.fr       */
+/*   Updated: 2025/09/30 17:44:28 by nando            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	rotate(t_player *p, int keycode)
 int	handle_key_press(int keycode, t_game_data *game)
 {
 	if (keycode == ESC_KEY)
-		return (close_window());
+		return (close_window(game));
 	else if (keycode == KEY_W || keycode == KEY_S || keycode == KEY_A
 		|| keycode == KEY_D)
 		move(&game->player, keycode);
