@@ -6,7 +6,7 @@
 /*   By: nando <nando@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 16:02:04 by nando             #+#    #+#             */
-/*   Updated: 2025/09/30 18:29:46 by nando            ###   ########.fr       */
+/*   Updated: 2025/09/30 19:12:43 by nando            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	init_game(t_game_data *g)
 	mlx_hook(g->win, 2, 1L << 0, handle_key_press, g);
 	g->player.pos_x = 2.5;
 	g->player.pos_y = 2.5;
-	init_player(&g->player, 'N');
+	init_player(&g->player, 'E');
 	rendering_ceiling_and_floor(g);
 	rendering_walls(g);
 }

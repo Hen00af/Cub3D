@@ -6,7 +6,7 @@
 /*   By: nando <nando@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 19:40:41 by nando             #+#    #+#             */
-/*   Updated: 2025/09/30 17:44:28 by nando            ###   ########.fr       */
+/*   Updated: 2025/09/30 19:26:41 by nando            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #define KEY_D 100
 #define KEY_LEFT 65361
 #define KEY_RIGHT 65363
-#define MOVE_SPEED 0.07
+#define MOVE_SPEED 0.1
 #define ROTATE_SPEED 0.05
 
 void	move(t_player *player, int keycode)
@@ -35,12 +35,12 @@ void	move(t_player *player, int keycode)
 		player->pos_x -= player->dir_vec_x * MOVE_SPEED;
 		player->pos_y -= player->dir_vec_y * MOVE_SPEED;
 	}
-	else if (keycode == KEY_A)
+	else if (keycode == KEY_D)
 	{
 		player->pos_x += player->plane_x * MOVE_SPEED;
 		player->pos_y += player->plane_y * MOVE_SPEED;
 	}
-	else if (keycode == KEY_D)
+	else if (keycode == KEY_A)
 	{
 		player->pos_x -= player->plane_x * MOVE_SPEED;
 		player->pos_y -= player->plane_y * MOVE_SPEED;
@@ -58,7 +58,7 @@ void	rotate(t_player *p, int keycode)
 	old_vec_y = p->dir_vec_y;
 	old_plane_x = p->plane_x;
 	old_plane_y = p->plane_y;
-	if (keycode == KEY_LEFT)
+	if (keycode == KEY_RIGHT)
 	{
 		p->dir_vec_x = old_vec_x * cos(ROTATE_SPEED) - old_vec_y
 			* sin(ROTATE_SPEED);
@@ -69,7 +69,7 @@ void	rotate(t_player *p, int keycode)
 		p->plane_y = old_plane_x * sin(ROTATE_SPEED) + old_plane_y
 			* cos(ROTATE_SPEED);
 	}
-	else if (keycode == KEY_RIGHT)
+	else if (keycode == KEY_LEFT)
 	{
 		p->dir_vec_x = old_vec_x * cos(-ROTATE_SPEED) - old_vec_y
 			* sin(-ROTATE_SPEED);
@@ -93,5 +93,6 @@ int	handle_key_press(int keycode, t_game_data *game)
 		rotate(&game->player, keycode);
 	rendering_ceiling_and_floor(game);
 	rendering_walls(game);
+	mlx_put_image_to_window(game->mlx, game->win, game->img.canvas, 0, 0);
 	return (0);
 }
