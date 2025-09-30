@@ -1,11 +1,5 @@
 #include "cub3D.h"
 
-typedef struct s_point
-{
-	int		x;
-	int		y;
-}			t_point;
-
 static void	fill(char **tab, int row, int col, int *flag)
 {
 	if (flag == FALSE)
@@ -22,7 +16,6 @@ static void	fill(char **tab, int row, int col, int *flag)
 	}
 	if (tab[row][col] == ' ')
 	{
-		printf("??????????????????????\n");
 		*flag = FALSE;
 		return ;
 	}
@@ -98,6 +91,7 @@ int	is_valid_map(char **map, t_data *data)
 	if (!copy)
 		return (FALSE);
 	flag = flood_fill(copy, player);
-	free_split(copy);
+	if (copy)
+		free_split(copy);
 	return (flag);
 }

@@ -8,6 +8,12 @@
 # define FALSE 0
 # define TRUE 1
 
+typedef struct s_point
+{
+	int				x;
+	int				y;
+}					t_point;
+
 typedef struct s_data
 {
 	char			*no_path;
@@ -59,4 +65,6 @@ int					is_player_char(char c);
 void				init_player(t_data *data);
 int					is_valid_element(char **av, int *fd, t_cub *cub);
 void				find_player(int y, char *line, t_data *data);
+int					is_valid_map(char **map, t_data *data);
+
 #endif
