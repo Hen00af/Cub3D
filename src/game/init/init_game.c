@@ -6,13 +6,12 @@
 /*   By: nando <nando@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 16:02:04 by nando             #+#    #+#             */
-/*   Updated: 2025/09/14 19:22:50 by nando            ###   ########.fr       */
+/*   Updated: 2025/09/30 17:19:20 by nando            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // #include "../../lib/cub3D.h"
 #include "../game.h"
-#include "../minilibx-Linux/mlx.h"
 
 void	init_player(t_player *p, char posi)
 {
@@ -51,20 +50,12 @@ void	init_game(t_game_data *g)
 	g->mlx = mlx_init();
 	g->win = mlx_new_window(g->mlx, WIN_W, WIN_H, "Cub3D");
 	g->img.canvas = mlx_new_image(g->mlx, WIN_W, WIN_H);
-	g->img.data = mlx_get_data_addr(g->img.canvas,
-			&g->img.bits_per_pixel, &g->img.line_length,
-			&g->img.endian);
+	g->img.data = mlx_get_data_addr(g->img.canvas, &g->img.bits_per_pixel,
+			&g->img.line_length, &g->img.endian);
 	mlx_hook(g->win, 2, 1L << 0, handle_key_press, g);
+	g->player.pos_x = 2.5;
+	g->player.pos_y = 2.5;
 	init_player(&g->player, 'N');
 	rendering_ceiling_and_floor(g);
 	rendering_walls(g);
-}
-
-int	main(void)
-{
-	t_game_data game;
-	init_game(&game);
-	mlx_put_image_to_window(game.mlx, game.win, game.img.canvas, 0, 0);
-	mlx_loop(game.mlx);
-	return (0);
 }

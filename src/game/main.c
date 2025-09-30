@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nando <nando@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/13 16:02:04 by nando             #+#    #+#             */
-/*   Updated: 2025/09/30 12:45:49 by nando            ###   ########.fr       */
+/*   Created: 2025/09/30 12:37:44 by nando             #+#    #+#             */
+/*   Updated: 2025/09/30 17:12:46 by nando            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "../lib/cub3D.h"
-// 	game->mlx = mlx_init();
-// 	game->win = mlx_new_window(game->mlx, WIN_W, WIN_H, "Cub3D");
-// 	game->img.img = mlx_new_image(game->mlx, WIN_W, WIN_H);
-// 	game->img.address = mlx_get_data_addr();
-// 	mlx_loop(game->mlx);
-// }
+#include "game.h"
 
-#include "../game.h"
-
-int close_window(t_game_data *g)
+int	main(void)
 {
-    if (g->win)
-        mlx_destroy_window(g->mlx, g->win);
-    exit(0);
-    return (0);
+	t_game_data	game;
+	char		*map[] = {"111111", "100001", "10N001", "111111", NULL};
+
+	game.map = map;
+	init_game(&game);
+	mlx_put_image_to_window(game.mlx, game.win, game.img.canvas, 0, 0);
+	mlx_loop(game.mlx);
+	return (0);
 }
