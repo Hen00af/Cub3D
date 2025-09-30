@@ -1,15 +1,5 @@
 #include "cub3D.h"
 
-static void	map_reallocate(char **new_map, int count, char *line, t_data *data)
-{
-	printf("%s", line);
-	new_map[count] = ft_strdup(line);
-	new_map[count + 1] = NULL;
-	free(data->map);
-	data->map = new_map;
-	free(line);
-}
-
 int	is_player_char(char c)
 {
 	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
@@ -40,31 +30,50 @@ void	find_player(int y, char *line, t_data *data)
 	return ;
 }
 
+static void	map_reallocate(char **new_map, int count, char *line, t_data *data)
+{
+	printf("%s", line);
+	new_map[count] = ft_strdup(line);
+	new_map[count + 1] = NULL;
+	free(data->map);
+	data->map = new_map;
+	free(line);
+}
+
+int	append_map_line(char *line, t_data *data, int count)
+{
+	char	**new_map;
+	int		i;
+
+	new_map = malloc((count + 2) * sizeof(char *));
+	if (!new_map)
+		return (FALSE);
+	i = 0;
+	while (i < count)
+	{
+		new_map[i] = data->map[i];
+		i++;
+	}
+	map_reallocate(new_map, count, line, data);
+	return (TRUE);
+}
+
 int	get_map(int *fd, t_data *data)
 {
 	int		count;
-	int		i;
-	char	**new_map;
 	char	*line;
+	int		is_malloc_error;
 
 	data->map = NULL;
 	count = 0;
+	is_malloc_error = 1;
 	line = get_next_line(*fd);
-	while (line)
+	while (line && is_malloc_error)
 	{
 		find_player(count, line, data);
-		new_map = malloc((count + 2) * sizeof(char *));
-		if (!new_map)
-			return (FALSE);
-		i = 0;
-		while (i < count)
-		{
-			new_map[i] = data->map[i];
-			i++;
-		}
-		map_reallocate(new_map, count, line, data);
+		is_malloc_error = append_map_line(line, data, count);
 		line = get_next_line(*fd);
 		count++;
 	}
-	return (is_valid_map(data->map));
+	return (is_malloc_error);
 }

@@ -1,32 +1,97 @@
 #include "cub3D.h"
 
-typedef struct s_point
+static void	fill(char **tab, int row, int col, int *flag)
 {
-	int		x;
-	int		y;
-}			t_point;
-
-static void	fill(char **tab, t_point size, char tag, int row, int col)
-{
-	if (row < 0 || col < 0 || row >= size.y || col >= size.x)
+	if (flag == FALSE)
 		return ;
-	if (tab[row][col] == 'F' || tab[row][col] != tag)
+	if (row < 0 || tab[row] == NULL)
+	{
+		*flag = FALSE;
 		return ;
+	}
+	if (col < 0 || tab[row][col] == '\0')
+	{
+		*flag = FALSE;
+		return ;
+	}
+	if (tab[row][col] == ' ')
+	{
+		*flag = FALSE;
+		return ;
+	}
+	if (tab[row][col] == '1' || tab[row][col] == 'F')
+		return ;
+	if (tab[row][col] != '0' && tab[row][col] != 'N' && tab[row][col] != 'S'
+		&& tab[row][col] != 'E' && tab[row][col] != 'W')
+	{
+		*flag = FALSE;
+		return ;
+	}
 	tab[row][col] = 'F';
-	fill(tab, size, tag, row - 1, col);
-	fill(tab, size, tag, row + 1, col);
-	fill(tab, size, tag, row, col - 1);
-	fill(tab, size, tag, row, col + 1);
+	fill(tab, row - 1, col, flag);
+	fill(tab, row + 1, col, flag);
+	fill(tab, row, col - 1, flag);
+	fill(tab, row, col + 1, flag);
 }
 
-void	flood_fill(char **tab, t_point size, t_point begin)
+static int	flood_fill(char **map, t_point player)
 {
-	char	target;
+	int	flag;
 
-	target = tab[begin.y][begin.x];
-	fill(tab, size, target, begin.y, begin.x);
+	flag = TRUE;
+	fill(map, player.y, player.x, &flag);
+	return (flag);
 }
 
-int	is_valid_map(char **map)
+static void	mapping_player(t_point *point, t_data *data)
 {
+	point->x = data->player_x;
+	point->y = data->player_y;
+}
+
+static char	**map_copy(char **map)
+{
+	int		height;
+	char	**copy;
+	int		i;
+
+	height = 0;
+	while (map[height])
+		height++;
+	copy = malloc(sizeof(char *) * (height + 1));
+	if (!copy)
+		return (NULL);
+	i = 0;
+	while (i < height)
+	{
+		copy[i] = ft_strdup(map[i]);
+		if (!copy[i])
+		{
+			while (--i >= 0)
+				free(copy[i]);
+			free(copy);
+			return (NULL);
+		}
+		i++;
+	}
+	copy[height] = NULL;
+	return (copy);
+}
+
+int	is_valid_map(char **map, t_data *data)
+{
+	t_point	player;
+	char	**copy;
+	int		flag;
+
+	mapping_player(&player, data);
+	if (player.x < 0 || player.y < 0)
+		return (FALSE);
+	copy = map_copy(map);
+	if (!copy)
+		return (FALSE);
+	flag = flood_fill(copy, player);
+	if (copy)
+		free_split(copy);
+	return (flag);
 }
