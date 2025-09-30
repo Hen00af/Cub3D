@@ -8,6 +8,7 @@ MLXFLAGS = -L minilibx-Linux -lmlx -lXext -lX11 -lm
 SRC = main.c \
       init/init_game.c \
       key_operation/handle_key.c \
+	  key_operation/move.c \
       render/render_algo.c \
       render/render.c \
       utils/utils.c

@@ -6,7 +6,7 @@
 /*   By: nando <nando@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 16:08:45 by nando             #+#    #+#             */
-/*   Updated: 2025/09/30 17:36:34 by nando            ###   ########.fr       */
+/*   Updated: 2025/09/30 20:14:14 by nando            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,16 @@
 # define CEILING_COLOR 0x87CEEB
 # define FLOOR_COLOR 0x8B4513
 # define WALL_COLOR 0x808080
+
+# define ESC_KEY 65307
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
+# define KEY_LEFT 65361
+# define KEY_RIGHT 65363
+# define MOVE_SPEED 0.1
+# define ROTATE_SPEED 0.05
 
 typedef struct s_player
 {
@@ -91,6 +101,11 @@ void				rendering_ceiling_and_floor(t_game_data *game);
 void				calculate_the_wall_height(t_game_data *g);
 void				rendering_wall_slice(t_game_data *g, int x);
 void				rendering_walls(t_game_data *game);
+void				move_right(t_game_data *g);
+void				move_left(t_game_data *g);
+void				move_back(t_game_data *g);
+void				move_forward(t_game_data *g);
+void				move(t_game_data *g, int keycode);
 int					handle_key_press(int keycode, t_game_data *game);
 int					close_window(t_game_data *g);
 
