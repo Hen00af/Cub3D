@@ -6,11 +6,12 @@
 /*   By: nando <nando@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 20:07:49 by nando             #+#    #+#             */
-/*   Updated: 2025/09/30 17:27:51 by nando            ###   ########.fr       */
+/*   Updated: 2025/10/01 16:47:50 by nando            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../game.h"
+#include "../../../lib/cub3D.h"
 
 void	put_pixel_to_canvas(t_image_data *img, int x, int y, int color)
 {
@@ -20,7 +21,7 @@ void	put_pixel_to_canvas(t_image_data *img, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	rendering_ceiling_and_floor(t_game_data *g)
+void	rendering_ceiling_and_floor(t_game_data *g, t_data *data)
 {
 	int	x;
 	int	y;
@@ -30,13 +31,13 @@ void	rendering_ceiling_and_floor(t_game_data *g)
 	{
 		x = 0;
 		while (x++ <= WIN_W)
-			put_pixel_to_canvas(&g->img, x, y, CEILING_COLOR);
+			put_pixel_to_canvas(&g->img, x, y, data->ceiling_color);
 	}
 	while (y++ < WIN_H)
 	{
 		x = 0;
 		while (x++ <= WIN_W)
-			put_pixel_to_canvas(&g->img, x, y, FLOOR_COLOR);
+			put_pixel_to_canvas(&g->img, x, y, data->floor_color);
 	}
 }
 
