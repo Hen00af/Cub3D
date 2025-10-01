@@ -27,6 +27,6 @@ void	flood_fill(char **tab, t_point size, t_point begin)
 	fill(tab, size, target, begin.y, begin.x);
 }
 
-int	is_valid_map(char **map)
-{
-}
+// int	is_valid_map(char **map)
+// {
+// }

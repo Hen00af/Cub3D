@@ -6,7 +6,7 @@
 /*   By: nando <nando@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 16:08:45 by nando             #+#    #+#             */
-/*   Updated: 2025/09/30 20:14:14 by nando            ###   ########.fr       */
+/*   Updated: 2025/10/01 16:48:12 by nando            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,12 +92,13 @@ typedef struct s_game_data
 	char			**map;
 }					t_game_data;
 
-void				init_game(t_game_data *game);
+void				init_game(t_game_data *game, t_data *data);
+int					run_game(t_data *data);
 void				calculate_ray(t_game_data *g, int x);
 void				dda(t_game_data *g);
 void				put_pixel_to_canvas(t_image_data *img, int x, int y,
 						int color);
-void				rendering_ceiling_and_floor(t_game_data *game);
+void				rendering_ceiling_and_floor(t_game_data *g, t_data *data);
 void				calculate_the_wall_height(t_game_data *g);
 void				rendering_wall_slice(t_game_data *g, int x);
 void				rendering_walls(t_game_data *game);

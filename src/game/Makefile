@@ -1,4 +1,4 @@
-NAME = cub3d
+NAME = game
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -I./lib -I./libft -I./get_next_line
