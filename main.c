@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nando <nando@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 18:10:42 by shattori          #+#    #+#             */
-/*   Updated: 2025/10/01 16:33:36 by nando            ###   ########.fr       */
+/*   Updated: 2025/10/03 19:14:01 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,5 @@ int	main(int ac, char **av)
 	run_game(&cub.data);
 	close(fd);
 	exit_cub(&fd, &cub);
-	// minilib_init();
-	// minilibx_destroy();
 	return (0);
 }

@@ -28,6 +28,9 @@ $(GAME):
 $(GNL):
 	$(MAKE) -C get_next_line
 
+j:
+	$(MAKE) -j6 all
+
 clean:
 	$(MAKE) -C libft clean
 	$(MAKE) -C src/parse clean
