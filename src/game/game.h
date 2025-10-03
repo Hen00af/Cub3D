@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   game.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nando <nando@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 16:08:45 by nando             #+#    #+#             */
-/*   Updated: 2025/10/01 16:48:12 by nando            ###   ########.fr       */
+/*   Updated: 2025/10/03 17:12:57 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GAME_H
 # define GAME_H
 
-# include "minilibx-Linux/mlx.h"
+# include "cub3D.h"
+# include "mlx.h"
 # include <fcntl.h>
 # include <math.h>
 # include <stdio.h>
@@ -107,7 +108,8 @@ void				move_left(t_game_data *g);
 void				move_back(t_game_data *g);
 void				move_forward(t_game_data *g);
 void				move(t_game_data *g, int keycode);
-int					handle_key_press(int keycode, t_game_data *game);
+int					handle_key_press(int keycode, t_game_data *game,
+						t_data *data);
 int					close_window(t_game_data *g);
 
 #endif
