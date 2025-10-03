@@ -6,7 +6,7 @@
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 22:20:57 by shattori          #+#    #+#             */
-/*   Updated: 2025/10/03 18:29:47 by shattori         ###   ########.fr       */
+/*   Updated: 2025/10/03 19:41:16 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,6 @@ static int	comma_count(char *str, char c)
 	return (count);
 }
 
-// TODO: mapの定義をチェック
-// FloodFill を2回施行してクリア可能かどうかを検証
 int	parse_color(char *str)
 {
 	char	**rgb_parts;
@@ -71,7 +69,7 @@ int	parse_color(char *str)
 
 	comma[0] = ',';
 	comma[1] = '\0';
-	if (comma_count(str, ',') != 2 && ft_isdigit(str[ft_strlen(str) - 1]) == 0)
+	if (comma_count(str, ',') != 2 || !ft_isdigit(str[ft_strlen(str) - 2]))
 		return (-1);
 	while (*str == ' ' || *str == '\t')
 		str++;
