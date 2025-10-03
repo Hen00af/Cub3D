@@ -5,13 +5,13 @@ int	is_player_char(char c)
 	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }
 
-void	find_player(int y, char *line, t_data *data)
+int	find_player(int y, char *line, t_data *data)
 {
 	int	x;
 	int	player_count;
 
 	if (!data->map)
-		return ;
+		return (FALSE);
 	player_count = 0;
 	x = 0;
 	while (line[x])
@@ -26,8 +26,8 @@ void	find_player(int y, char *line, t_data *data)
 		x++;
 	}
 	if (player_count != 1)
-		return ;
-	return ;
+		return (FALSE);
+	return (TRUE);
 }
 
 static void	map_reallocate(char **new_map, int count, char *line, t_data *data)
@@ -63,17 +63,23 @@ int	get_map(int *fd, t_data *data)
 	int		count;
 	char	*line;
 	int		is_malloc_error;
+	int		player_found;
 
 	data->map = NULL;
 	count = 0;
 	is_malloc_error = 1;
+	player_found = 0;
 	line = get_next_line(*fd);
 	while (line && is_malloc_error)
 	{
-		find_player(count, line, data);
+		player_found += find_player(count, line, data);
 		is_malloc_error = append_map_line(line, data, count);
 		line = get_next_line(*fd);
 		count++;
 	}
-	return (is_malloc_error);
+	if (!is_malloc_error)
+		return (ft_put_str("Error: Memory allocation failed\n"), FALSE);
+	if (player_found != 1)
+		return (ft_put_str("Error: Invalid player number\n"), FALSE);
+	return (TRUE);
 }

@@ -63,7 +63,7 @@ void				free_map(t_data *map);
 int					exit_cub(int *fd, t_cub *cub);
 int					is_player_char(char c);
 int					is_valid_element(char **av, int *fd, t_cub *cub);
-void				find_player(int y, char *line, t_data *data);
+int					find_player(int y, char *line, t_data *data);
 int					is_valid_map(char **map, t_data *data);
 void				p_init_player(t_data *data);
 #endif
