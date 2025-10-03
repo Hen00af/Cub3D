@@ -1,22 +1,18 @@
 NAME = cub3D
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I./lib -I./get_next_line -I./libft -I./minilibx-linux
+CFLAGS = -Wall -Wextra -Werror -I./lib -I./get_next_line -I./libft -I./minilibx-linux -I./libft
 
 LIBFT = libft/libft.a
 PARSE = src/parse/parse.a
 GAME  = src/game/game.a
 GNL   = get_next_line/gnl.a
-MISC  = src/misc/exit.o
 
-all: $(NAME)
+$(NAME): main.o $(LIBFT) $(PARSE) $(GAME) $(GNL)
+	$(CC) $(CFLAGS) -o $@ $^ \
+	-Lminilibx-linux -lmlx -lXext -lX11 -lm
 
-$(NAME): main.o $(MISC) $(PARSE) $(GAME) $(GNL) $(LIBFT)
-	$(CC) $(CFLAGS) -o $@ $^ -Lminilibx-linux -lmlx -lXext -lX11 -lm
 
 main.o: main.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-src/misc/exit.o: src/misc/exit.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(LIBFT):
@@ -33,7 +29,7 @@ clean:
 	$(MAKE) -C src/parse clean
 	$(MAKE) -C src/game clean
 	$(MAKE) -C get_next_line clean
-	rm -f main.o $(MISC)
+	rm -f main.o
 
 fclean: clean
 	$(MAKE) -C libft fclean

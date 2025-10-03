@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   handle_key.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nando <nando@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 19:40:41 by nando             #+#    #+#             */
-/*   Updated: 2025/09/30 20:13:50 by nando            ###   ########.fr       */
+/*   Updated: 2025/10/03 17:12:36 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../game.h"
-#include "../minilibx-Linux/mlx.h"
+#include "mlx.h"
 
 void	rotate(t_player *p, int keycode)
 {
@@ -48,7 +48,7 @@ void	rotate(t_player *p, int keycode)
 	}
 }
 
-int	handle_key_press(int keycode, t_game_data *g)
+int	handle_key_press(int keycode, t_game_data *g, t_data *data)
 {
 	if (keycode == ESC_KEY)
 		return (close_window(g));
@@ -57,7 +57,7 @@ int	handle_key_press(int keycode, t_game_data *g)
 		move(g, keycode);
 	else if (keycode == KEY_LEFT || keycode == KEY_RIGHT)
 		rotate(&g->player, keycode);
-	rendering_ceiling_and_floor(g);
+	rendering_ceiling_and_floor(g, data);
 	rendering_walls(g);
 	mlx_put_image_to_window(g->mlx, g->win, g->img.canvas, 0, 0);
 	return (0);

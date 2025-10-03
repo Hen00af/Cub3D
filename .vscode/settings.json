@@ -4,7 +4,8 @@
 		"libft.h": "c",
 		"cub3d.h": "c",
 		"stdlib.h": "c",
-		"cstdlib": "c"
+		"cstdlib": "c",
+		"game.h": "c"
 	},
 	"makefile.configureOnOpen": true
 }

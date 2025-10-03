@@ -6,7 +6,7 @@
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 22:20:57 by shattori          #+#    #+#             */
-/*   Updated: 2025/09/16 17:17:28 by shattori         ###   ########.fr       */
+/*   Updated: 2025/10/03 17:14:34 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	init_maps(t_data *data)
 	data->floor_color = -1;
 	data->ceiling_color = -1;
 	data->map = NULL;
-	init_player(data);
+	p_init_player(data);
 }
 
 void	cleanup_data(t_data *data)
@@ -124,10 +124,9 @@ void	cleanup_data(t_data *data)
 	}
 }
 
-void	init_player(t_data *data)
+void	p_init_player(t_data *data)
 {
 	data->player_x = -1;
 	data->player_y = -1;
 	data->player_dir = '\0';
 }
-

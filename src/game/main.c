@@ -3,26 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nando <nando@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 12:37:44 by nando             #+#    #+#             */
-/*   Updated: 2025/10/01 16:39:48 by nando            ###   ########.fr       */
+/*   Updated: 2025/10/03 17:29:21 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../lib/cub3D.h"
-#include "game.h"
+// #include "game.h"
 
-int	run_game(t_data *data)
-{
-	t_game_data	game;
+// int	run_game(t_data *data)
+// {
+// 	t_game_data	game;
 
-	game.map = data->map;
-	init_game(&game, data);
-	mlx_put_image_to_window(game.mlx, game.win, game.img.canvas, 0, 0);
-	mlx_loop(game.mlx);
-	return (0);
-}
+// 	game.map = data->map;
+// 	init_game(&game, data);
+// 	mlx_put_image_to_window(game.mlx, game.win, game.img.canvas, 0, 0);
+// 	mlx_loop(game.mlx);
+// 	return (0);
+// }
 
 // gameのみのテスト用
 
