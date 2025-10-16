@@ -75,13 +75,13 @@ void	dda_loop(t_game *g, t_dda *dda)
 		{
 			dda->side_dist_x += dda->delta_dist_x;
 			dda->map_x += dda->step_x;
-			dda->side = 0;
+			g->render.side = 0;
 		}
 		else
 		{
 			dda->side_dist_y += dda->delta_dist_y;
 			dda->map_y += dda->step_y;
-			dda->side = 1;
+			g->render.side = 1;
 		}
 		if (g->world.map[dda->map_y][dda->map_x] == '1')
 			dda->hit = 1;
@@ -90,7 +90,7 @@ void	dda_loop(t_game *g, t_dda *dda)
 
 void	calcurate_perp_wall_dist(t_game *g, t_dda *dda)
 {
-	if (dda->side == 0)
+	if (g->render.side == 0)
 		g->render.perp_wall_dist = (dda->side_dist_x - dda->delta_dist_x);
 	else
 		g->render.perp_wall_dist = (dda->side_dist_y - dda->delta_dist_y);
