@@ -128,6 +128,7 @@ typedef struct s_game
 {
 	void			*mlx;
 	void			*win;
+	int				is_bonus;
 	t_world_data world; // parse層から受け取る
 	t_player player;    // game層で更新
 	t_render render;    // render層で使用

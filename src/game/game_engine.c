@@ -6,7 +6,8 @@ static void	run_game(t_game *g)
 	mlx_hook(g->win, 2, 1L << 0, handle_key_press, g);
 	rendering_ceiling_and_floor(g, &g->world);
 	rendering_walls(g);
-	b_render(g);
+	if (g->is_bonus)
+		b_render(g);
 }
 
 int	execute_game(t_game *game)
