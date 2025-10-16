@@ -161,4 +161,7 @@ void				dda_loop(t_game *g, t_dda *dda);
 void				calcurate_perp_wall_dist(t_game *g, t_dda *dda);
 int					execute_game(t_game *game);
 
+// bonus
+void				b_render(t_game *g);
+
 #endif

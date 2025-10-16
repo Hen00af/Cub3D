@@ -9,6 +9,7 @@ SRC = game_engine.c \
       key_operation/move.c \
       render/render_algo.c \
       render/render.c \
+      render/b_render.c \
       utils/game_utils.c
 	  
 OBJDIR = obj

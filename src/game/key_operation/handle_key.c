@@ -48,6 +48,7 @@ int	handle_key_press(int keycode, t_game *g, t_world_data *data)
 		rotate(&g->player, keycode);
 	rendering_ceiling_and_floor(g, data);
 	rendering_walls(g);
+	b_render(g);
 	mlx_put_image_to_window(g->mlx, g->win, g->render.img.canvas, 0, 0);
 	return (0);
 }
