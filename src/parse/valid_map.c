@@ -1,32 +1,38 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   valid_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/17 00:13:09 by shattori          #+#    #+#             */
+/*   Updated: 2025/10/17 00:25:26 by shattori         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parse.h"
+
+static void	fill_false(int *flag)
+{
+	*flag = FALSE;
+	return ;
+}
 
 static void	fill(char **tab, int row, int col, int *flag)
 {
 	if (flag == FALSE)
 		return ;
 	if (row < 0 || tab[row] == NULL)
-	{
-		*flag = FALSE;
-		return ;
-	}
+		return (fill_false(flag));
 	if (col < 0 || tab[row][col] == '\0')
-	{
-		*flag = FALSE;
-		return ;
-	}
+		return (fill_false(flag));
 	if (tab[row][col] == ' ')
-	{
-		*flag = FALSE;
-		return ;
-	}
+		return (fill_false(flag));
 	if (tab[row][col] == '1' || tab[row][col] == 'F')
 		return ;
 	if (tab[row][col] != '0' && tab[row][col] != 'N' && tab[row][col] != 'S'
 		&& tab[row][col] != 'E' && tab[row][col] != 'W')
-	{
-		*flag = FALSE;
-		return ;
-	}
+		return (fill_false(flag));
 	tab[row][col] = 'F';
 	fill(tab, row - 1, col, flag);
 	fill(tab, row + 1, col, flag);
@@ -47,35 +53,6 @@ static void	mapping_player(t_point *point, t_data *data)
 {
 	point->x = data->player_x;
 	point->y = data->player_y;
-}
-
-static char	**map_copy(char **map)
-{
-	int		height;
-	char	**copy;
-	int		i;
-
-	height = 0;
-	while (map[height])
-		height++;
-	copy = malloc(sizeof(char *) * (height + 1));
-	if (!copy)
-		return (NULL);
-	i = 0;
-	while (i < height)
-	{
-		copy[i] = ft_strdup(map[i]);
-		if (!copy[i])
-		{
-			while (--i >= 0)
-				free(copy[i]);
-			free(copy);
-			return (NULL);
-		}
-		i++;
-	}
-	copy[height] = NULL;
-	return (copy);
 }
 
 int	is_valid_map(char **map, t_data *data)
