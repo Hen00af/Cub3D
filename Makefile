@@ -6,7 +6,7 @@ LIBFT = libft/libft.a
 PARSE = src/parse/parse.a
 GAME  = src/game/game.a
 GNL   = get_next_line/gnl.a
-MISC  = src/misc/exit.o
+MISC  = src/misc/init_game.o
 
 all: $(NAME)
 
@@ -16,11 +16,11 @@ $(NAME): main.o $(MISC) $(PARSE) $(GAME) $(GNL) $(LIBFT)
 main.o: main.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
+src/misc/init_game.o: src/misc/init_game.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
 v:
 	$(MAKE) -C src/parse
-
-src/misc/exit.o: src/misc/exit.c
-	$(CC) $(CFLAGS) -c $< -o $@
 
 $(LIBFT):
 	$(MAKE) -C libft
@@ -32,7 +32,7 @@ $(GNL):
 	$(MAKE) -C get_next_line
 
 j:
-	$(MAKE) -j6 all
+	$(MAKE) -j all
 
 clean:
 	$(MAKE) -C libft clean
