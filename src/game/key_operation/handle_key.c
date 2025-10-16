@@ -6,7 +6,7 @@
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 19:40:41 by nando             #+#    #+#             */
-/*   Updated: 2025/10/15 23:52:46 by shattori         ###   ########.fr       */
+/*   Updated: 2025/10/16 16:52:34 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	rotate(t_player *p, int keycode)
 	}
 }
 
-int	handle_key_press(int keycode, t_game_data *g, t_data *data)
+int	handle_key_press(int keycode, t_game *g, t_world_data *data)
 {
 	if (keycode == ESC_KEY)
 		return (close_window(g));
@@ -59,6 +59,6 @@ int	handle_key_press(int keycode, t_game_data *g, t_data *data)
 		rotate(&g->player, keycode);
 	rendering_ceiling_and_floor(g, data);
 	rendering_walls(g);
-	mlx_put_image_to_window(g->mlx, g->win, g->img.canvas, 0, 0);
+	mlx_put_image_to_window(g->mlx, g->win, g->render.img.canvas, 0, 0);
 	return (0);
 }

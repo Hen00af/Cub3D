@@ -6,7 +6,7 @@
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 20:07:49 by nando             #+#    #+#             */
-/*   Updated: 2025/10/15 23:57:26 by shattori         ###   ########.fr       */
+/*   Updated: 2025/10/16 16:55:03 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	put_pixel_to_canvas(t_image_data *img, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	rendering_ceiling_and_floor(t_game_data *g, t_data *data)
+void	rendering_ceiling_and_floor(t_game *g, t_world_data *data)
 {
 	int	x;
 	int	y;
@@ -30,35 +30,35 @@ void	rendering_ceiling_and_floor(t_game_data *g, t_data *data)
 	{
 		x = 0;
 		while (x++ <= WIN_W)
-			put_pixel_to_canvas(&g->img, x, y, data->ceiling_color);
+			put_pixel_to_canvas(&g->render.img, x, y, data->ceiling_color);
 	}
 	while (y++ < WIN_H)
 	{
 		x = 0;
 		while (x++ <= WIN_W)
-			put_pixel_to_canvas(&g->img, x, y, data->floor_color);
+			put_pixel_to_canvas(&g->render.img, x, y, data->floor_color);
 	}
 }
 
-void	rendering_wall_slice(t_game_data *g, int x)
+void	rendering_wall_slice(t_game *g, int x)
 {
 	int	y;
 
-	y = g->draw_start;
-	while (y++ < g->draw_end)
-		put_pixel_to_canvas(&g->img, x, y, WALL_COLOR);
+	y = g->render.draw_start;
+	while (y++ < g->render.draw_end)
+		put_pixel_to_canvas(&g->render.img, x, y, WALL_COLOR);
 }
 
-void	rendering_walls(t_game_data *g)
+void	rendering_walls(t_game *g)
 {
 	int	x;
 
 	x = 0;
 	while (x < WIN_W)
 	{
-		calculate_ray(g, x);
+		calculate_ray(&g->render.ray, &g->player, x);
 		dda(g);
-		calculate_the_wall_height(g);
+		calculate_the_wall_height(&g->render, g);
 		rendering_wall_slice(g, x);
 		x++;
 	}

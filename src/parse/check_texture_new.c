@@ -6,13 +6,11 @@
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 22:20:57 by shattori          #+#    #+#             */
-/*   Updated: 2025/10/16 11:56:15 by shattori         ###   ########.fr       */
+/*   Updated: 2025/10/16 15:21:13 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../lib/cub3D.h"
-#include "../../get_next_line/get_next_line.h"
-
+#include "parse.h"
 
 char	*get_next_str(int fd)
 {
