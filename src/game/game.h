@@ -28,6 +28,7 @@
 # define KEY_RIGHT 65363
 # define MOVE_SPEED 0.1
 # define ROTATE_SPEED 0.05
+
 // 画像データ構造体
 typedef struct s_image_data
 {
@@ -36,6 +37,8 @@ typedef struct s_image_data
 	int				bits_per_pixel;
 	int				line_length;
 	int				endian;
+	int				height;
+	int				width;
 }					t_image_data;
 
 // プレイヤー構造体
@@ -86,14 +89,24 @@ typedef struct s_ray
 	int				draw_end;
 }					t_ray;
 
+typedef struct s_textures
+{
+	t_image_data	north;
+	t_image_data	south;
+	t_image_data	east;
+	t_image_data	west;
+}					t_textures;
+
 typedef struct s_render
 {
 	t_image_data	img;
+	t_textures		textures;
 	t_ray			ray;
 	double			perp_wall_dist;
 	int				line_height;
 	int				draw_start;
 	int				draw_end;
+	int				side;
 }					t_render;
 
 // DDA用構造体
@@ -128,7 +141,9 @@ void				put_pixel_to_canvas(t_image_data *img, int x, int y,
 						int color);
 void				calculate_the_wall_height(t_render *r, t_game *g);
 void				rendering_ceiling_and_floor(t_game *g, t_world_data *data);
-void				rendering_wall_slice(t_game *g, int x);
+void				load_texture(t_game *game, const char *file_path,
+						t_image_data *texture);
+void				load_all_textures(t_game *game);
 void				rendering_walls(t_game *game);
 void				move_right(t_game *g);
 void				move_left(t_game *g);
@@ -144,7 +159,6 @@ void				init_sidedist_and_step(t_game *g, t_dda *dda);
 void				init_dda(t_game *g, t_dda *dda);
 void				dda_loop(t_game *g, t_dda *dda);
 void				calcurate_perp_wall_dist(t_game *g, t_dda *dda);
-void				init_player(t_player *p);
 int					execute_game(t_game *game);
 
 #endif
