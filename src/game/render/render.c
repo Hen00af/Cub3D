@@ -3,21 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nando <nando@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 20:07:49 by nando             #+#    #+#             */
-/*   Updated: 2025/10/01 16:47:50 by nando            ###   ########.fr       */
+/*   Updated: 2025/10/15 23:57:26 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../game.h"
-#include "../../../lib/cub3D.h"
 
 void	put_pixel_to_canvas(t_image_data *img, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = img->data + (y * img->line_length + x * (img->bits_per_pixel / 8));
+	dst = img->address + (y * img->line_length + x * (img->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }
 
@@ -43,10 +42,10 @@ void	rendering_ceiling_and_floor(t_game_data *g, t_data *data)
 
 void	rendering_wall_slice(t_game_data *g, int x)
 {
-	int y;
+	int	y;
 
 	y = g->draw_start;
-	while(y++ < g->draw_end)
+	while (y++ < g->draw_end)
 		put_pixel_to_canvas(&g->img, x, y, WALL_COLOR);
 }
 

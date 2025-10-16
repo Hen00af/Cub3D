@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nando <nando@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 20:11:32 by nando             #+#    #+#             */
-/*   Updated: 2025/09/30 20:11:56 by nando            ###   ########.fr       */
+/*   Updated: 2025/10/15 23:52:51 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../game.h"
+#include "game.h"
 
 void	move_forward(t_game_data *g)
 {

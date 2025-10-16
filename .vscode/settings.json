@@ -5,7 +5,12 @@
 		"cub3d.h": "c",
 		"stdlib.h": "c",
 		"cstdlib": "c",
-		"game.h": "c"
+		"game.h": "c",
+		"stdio.h": "c",
+		"parse.h": "c",
+		"ft_printf.h": "c",
+		"mlx.h": "c",
+		"get_next_line.h": "c"
 	},
 	"makefile.configureOnOpen": true
 }

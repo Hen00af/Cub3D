@@ -1,6 +1,6 @@
 NAME = cub3D
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I./lib -I./get_next_line -I./libft -I./minilibx-linux
+CFLAGS = -Wall -Wextra -Werror -I./lib -I./src/game -I./src/parse -I./get_next_line -I./libft -I./minilibx-linux
 
 LIBFT = libft/libft.a
 PARSE = src/parse/parse.a
@@ -15,6 +15,9 @@ $(NAME): main.o $(MISC) $(PARSE) $(GAME) $(GNL) $(LIBFT)
 
 main.o: main.c
 	$(CC) $(CFLAGS) -c $< -o $@
+
+v:
+	$(MAKE) -C src/parse
 
 src/misc/exit.o: src/misc/exit.c
 	$(CC) $(CFLAGS) -c $< -o $@

@@ -6,11 +6,11 @@
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 19:40:41 by nando             #+#    #+#             */
-/*   Updated: 2025/10/03 17:12:36 by shattori         ###   ########.fr       */
+/*   Updated: 2025/10/15 23:52:46 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../game.h"
+#include "game.h"
 #include "mlx.h"
 
 void	rotate(t_player *p, int keycode)

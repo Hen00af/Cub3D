@@ -1,28 +1,12 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   game.h                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/13 16:08:45 by nando             #+#    #+#             */
-/*   Updated: 2025/10/03 17:12:57 by shattori         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef GAME_H
 # define GAME_H
 
-# include "cub3D.h"
-# include "mlx.h"
-# include <fcntl.h>
+# include "../../lib/cub3D.h"
+# include "../../minilibx-linux/mlx.h"
+# include "../../src/parse/parse.h"
 # include <math.h>
-# include <stdio.h>
-# include <stdlib.h>
 
-# define FALSE 0
-# define TRUE 1
-
+// ウィンドウとキーの定数
 # define WIN_W 960
 # define WIN_H 720
 
@@ -40,6 +24,17 @@
 # define MOVE_SPEED 0.1
 # define ROTATE_SPEED 0.05
 
+// 画像データ構造体
+typedef struct s_image_data
+{
+	void			*canvas;
+	char			*address;
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
+}					t_image_data;
+
+// プレイヤー構造体
 typedef struct s_player
 {
 	double			pos_x;
@@ -50,12 +45,29 @@ typedef struct s_player
 	double			plane_y;
 }					t_player;
 
+// レイキャスティング用構造体
 typedef struct s_ray
 {
+	double			camera_x;
 	double			dir_x;
 	double			dir_y;
+	int				map_x;
+	int				map_y;
+	double			side_dist_x;
+	double			side_dist_y;
+	double			delta_dist_x;
+	double			delta_dist_y;
+	double			perp_wall_dist;
+	int				step_x;
+	int				step_y;
+	int				hit;
+	int				side;
+	int				line_height;
+	int				draw_start;
+	int				draw_end;
 }					t_ray;
 
+// DDA用構造体
 typedef struct s_dda
 {
 	int				map_x;
@@ -70,31 +82,23 @@ typedef struct s_dda
 	int				side;
 }					t_dda;
 
-typedef struct s_image_data
-{
-	void			*canvas;
-	char			*data;
-	int				bits_per_pixel;
-	int				line_length;
-	int				endian;
-}					t_image_data;
-
+// ゲームデータ構造体
 typedef struct s_game_data
 {
 	void			*mlx;
 	void			*win;
-	t_image_data	img;
+	char			**map;
 	t_player		player;
 	t_ray			ray;
+	t_image_data	img;
 	double			perp_wall_dist;
 	int				line_height;
 	int				draw_start;
 	int				draw_end;
-	char			**map;
 }					t_game_data;
 
+// 関数プロトタイプ
 void				init_game(t_game_data *game, t_data *data);
-int					run_game(t_data *data);
 void				calculate_ray(t_game_data *g, int x);
 void				dda(t_game_data *g);
 void				put_pixel_to_canvas(t_image_data *img, int x, int y,
@@ -111,5 +115,12 @@ void				move(t_game_data *g, int keycode);
 int					handle_key_press(int keycode, t_game_data *game,
 						t_data *data);
 int					close_window(t_game_data *g);
+void				init_player_posi(t_game_data *g, t_dda *dda);
+void				init_deltadist(t_game_data *g, t_dda *dda);
+void				init_sidedist_and_step(t_game_data *g, t_dda *dda);
+void				init_dda(t_game_data *g, t_dda *dda);
+void				dda_loop(t_game_data *g, t_dda *dda);
+void				calcurate_perp_wall_dist(t_game_data *g, t_dda *dda);
+int					run_game(t_data *data, t_game_data *game);
 
 #endif

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   render_algo.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nando <nando@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:13:48 by nando             #+#    #+#             */
-/*   Updated: 2025/09/30 19:35:46 by nando            ###   ########.fr       */
+/*   Updated: 2025/10/15 23:52:33 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../game.h"
+#include "game.h"
 
 void	calculate_ray(t_game_data *g, int x)
 {

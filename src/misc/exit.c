@@ -6,11 +6,12 @@
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 08:06:33 by shattori          #+#    #+#             */
-/*   Updated: 2025/09/28 23:40:40 by shattori         ###   ########.fr       */
+/*   Updated: 2025/10/16 13:34:32 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "../parse/parse.h"
+#include "../../lib/cub3D.h"  
 
 void	free_map(t_data *data)
 {
@@ -32,9 +33,9 @@ int	exit_fd(int *fd)
 	return (FALSE);
 }
 
-int	exit_cub(int *fd, t_cub *cub)
+int	exit_parse(int *fd, t_parse *parse)
 {
 	exit_fd(fd);
-	free_map(&cub->data);
+	free_map(&parse->data);
 	return (FALSE);
 }

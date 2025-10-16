@@ -6,11 +6,11 @@
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 18:27:03 by shattori          #+#    #+#             */
-/*   Updated: 2025/09/01 08:29:52 by shattori         ###   ########.fr       */
+/*   Updated: 2025/10/15 23:57:27 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "parse.h"
 
 static int	has_cub_extension(const char *filename)
 {

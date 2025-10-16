@@ -1,16 +1,7 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   check_texture_new.c                                :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/31 22:20:57 by shattori          #+#    #+#             */
-/*   Updated: 2025/10/03 19:41:16 by shattori         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
-#include "cub3D.h"
+#include "../../lib/cub3D.h"
+#include "../../get_next_line/get_next_line.h"
+
 
 char	*get_next_str(int fd)
 {
@@ -24,7 +15,7 @@ char	*get_next_str(int fd)
 
 // TODO: テクスチャファイルの存在チェック
 // NO, SO, WE, EA の4つのテクスチャが定義されているかチェック
-int	get_map_info(int *fd, t_cub *cub)
+int	get_map_info(int *fd, t_parse *cub)
 {
 	char	*str;
 	int		cnt;
