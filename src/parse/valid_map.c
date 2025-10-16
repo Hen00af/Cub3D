@@ -1,4 +1,4 @@
-#include "cub3D.h"
+#include "parse.h"
 
 static void	fill(char **tab, int row, int col, int *flag)
 {

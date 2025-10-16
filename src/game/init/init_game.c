@@ -6,11 +6,10 @@
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 16:02:04 by nando             #+#    #+#             */
-/*   Updated: 2025/10/03 17:10:28 by shattori         ###   ########.fr       */
+/*   Updated: 2025/10/15 23:57:22 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../lib/cub3D.h"
 #include "../game.h"
 
 void	init_player(t_player *p, t_data *data)
@@ -55,7 +54,7 @@ void	init_game(t_game_data *g, t_data *data)
 	g->mlx = mlx_init();
 	g->win = mlx_new_window(g->mlx, WIN_W, WIN_H, "Cub3D");
 	g->img.canvas = mlx_new_image(g->mlx, WIN_W, WIN_H);
-	g->img.data = mlx_get_data_addr(g->img.canvas, &g->img.bits_per_pixel,
+	g->img.address = mlx_get_data_addr(g->img.canvas, &g->img.bits_per_pixel,
 			&g->img.line_length, &g->img.endian);
 	mlx_hook(g->win, 2, 1L << 0, handle_key_press, g);
 	init_player(&g->player, data);

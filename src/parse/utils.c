@@ -6,11 +6,11 @@
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 22:13:42 by shattori          #+#    #+#             */
-/*   Updated: 2025/09/07 20:33:16 by shattori         ###   ########.fr       */
+/*   Updated: 2025/10/15 23:57:27 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "parse.h"
 
 int	xopen(int *fd, char *filename, int flag)
 {

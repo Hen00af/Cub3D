@@ -1,4 +1,4 @@
-#include "cub3D.h"
+#include "parse.h"
 
 int	is_valid_texture(t_data *data)
 {
