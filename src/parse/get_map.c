@@ -6,7 +6,7 @@
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 00:13:01 by shattori          #+#    #+#             */
-/*   Updated: 2025/10/17 00:13:02 by shattori         ###   ########.fr       */
+/*   Updated: 2025/10/17 16:51:05 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	find_player(int y, char *line, t_data *data)
 
 static void	map_reallocate(char **new_map, int count, char *line, t_data *data)
 {
-	printf("%s", line);
+	// printf("%s", line);
 	new_map[count] = ft_strdup(line);
 	new_map[count + 1] = NULL;
 	free(data->map);
