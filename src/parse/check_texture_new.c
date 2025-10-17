@@ -6,7 +6,7 @@
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 22:20:57 by shattori          #+#    #+#             */
-/*   Updated: 2025/10/17 17:55:42 by shattori         ###   ########.fr       */
+/*   Updated: 2025/10/17 18:37:57 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ char	*get_next_str(int fd)
 
 	str = get_next_line(fd);
 	while (str[0] == '\0' || str[0] == '\n')
+	{
+		free(str);
 		str = get_next_line(fd);
+	}
 	return (str);
 }
 
