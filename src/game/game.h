@@ -6,7 +6,7 @@
 /*   By: nando <nando@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 15:12:53 by nando             #+#    #+#             */
-/*   Updated: 2025/10/17 15:15:21 by nando            ###   ########.fr       */
+/*   Updated: 2025/10/17 16:25:36 by nando            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,26 @@
 # define MOVE_SPEED 0.1
 # define ROTATE_SPEED 0.05
 
+typedef struct s_bonus
+{
+	int				map_x;
+	int				map_y;
+	int				screen_x;
+	int				screen_y;
+	int				color;
+	char			tile;
+	int				player_map_x;
+	int				player_map_y;
+	int				dir_len;
+	int				dx;
+	int				dy;
+	int				px;
+	int				py;
+	int				i;
+	int				px2;
+	int				py2;
+}					t_bonus;
+
 typedef struct s_image_data
 {
 	void			*canvas;
@@ -59,6 +79,10 @@ typedef struct s_player
 	double			dir_vec_y;
 	double			plane_x;
 	double			plane_y;
+	double			old_vec_x;
+	double			old_vec_y;
+	double			old_plane_x;
+	double			old_plane_y;
 }					t_player;
 
 // world data used game_dir
@@ -103,6 +127,17 @@ typedef struct s_textures
 	t_image_data	west;
 }					t_textures;
 
+typedef struct s_wall_design
+{
+	double			wall_x;
+	int				tex_x;
+	int				tex_y;
+	double			tex_step;
+	double			tex_pos;
+	int				y;
+	int				color;
+}					t_wall_design;
+
 typedef struct s_render
 {
 	t_image_data	img;
@@ -133,36 +168,33 @@ typedef struct s_game
 {
 	void			*mlx;
 	void			*win;
-	t_world_data world; // received from parse
-	t_player player;	// update game_dir
-	t_render render;
+	t_world_data	world;
+	t_player		player;
+	t_render		render;
 }					t_game;
 
-void				calculate_ray(t_ray *r, t_player *p, int x);
+t_image_data		*select_texture(t_game *g);
 void				init_game(t_game *g);
-void				dda(t_game *g);
-void				put_pixel_to_canvas(t_image_data *img, int x, int y,
-						int color);
-void				calculate_the_wall_height(t_render *r, t_game *g);
-void				rendering_ceiling_and_floor(t_game *g, t_world_data *data);
-void				load_texture(t_game *game, const char *file_path,
-						t_image_data *texture);
-void				load_all_textures(t_game *game);
-void				rendering_walls(t_game *game);
 void				move_right(t_game *g);
 void				move_left(t_game *g);
 void				move_back(t_game *g);
 void				move_forward(t_game *g);
 void				move(t_game *g, int keycode);
-int					handle_key_press(int keycode, t_game *game,
-						t_world_data *data);
+int					handle_key_press(int keycode, t_game *game);
 int					close_window(t_game *g);
-void				init_player_posi(t_game *g, t_dda *dda);
-void				init_deltadist(t_game *g, t_dda *dda);
-void				init_sidedist_and_step(t_game *g, t_dda *dda);
+void				calculate_ray(t_ray *r, t_player *p, int x);
+void				calculate_the_wall_height(t_render *r, t_game *g);
+void				calcurate_perp_wall_dist(t_game *g, t_dda *dda);
+void				load_texture(t_game *game, const char *file_path,
+						t_image_data *texture);
+void				load_all_textures(t_game *game);
+void				put_pixel_to_canvas(t_image_data *img, int x, int y,
+						int color);
+void				rendering_ceiling_and_floor(t_game *g, t_world_data *data);
+void				rendering_walls(t_game *game);
 void				init_dda(t_game *g, t_dda *dda);
 void				dda_loop(t_game *g, t_dda *dda);
-void				calcurate_perp_wall_dist(t_game *g, t_dda *dda);
+void				dda(t_game *g);
 int					execute_game(t_game *game);
 
 // bonus

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   b_render.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nando <nando@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/17 15:55:31 by nando             #+#    #+#             */
+/*   Updated: 2025/10/17 16:04:10 by nando            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "game.h"
 #include <sys/time.h>
 
@@ -6,26 +18,6 @@
 #define COLOR_BLACK 0x000000
 #define COLOR_RED 0xFF0000
 #define COLOR_YELLOW 0xFFFF00
-
-typedef struct s_bonus
-{
-	int		map_x;
-	int		map_y;
-	int		screen_x;
-	int		screen_y;
-	int		color;
-	char	tile;
-	int		player_map_x;
-	int		player_map_y;
-	int		dir_len;
-	int		dx;
-	int		dy;
-	int		px;
-	int		py;
-	int		i;
-	int		px2;
-	int		py2;
-}			t_bonus;
 
 /* ---------------------------------------------------------
 ** 1マス分（TILE_SIZE x TILE_SIZE）を塗る関数
@@ -63,9 +55,9 @@ static void	draw_minimap_tiles(t_game *g, t_bonus *b)
 		{
 			b->tile = g->world.map[b->map_y][b->map_x];
 			if (b->tile == '1')
-				b->color = COLOR_WHITE; // 壁
+				b->color = COLOR_WHITE;
 			else
-				b->color = COLOR_BLACK; // 床
+				b->color = COLOR_BLACK;
 			draw_minimap_pixel_block(g, b, b->color);
 			b->map_x++;
 		}

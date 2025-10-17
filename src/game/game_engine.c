@@ -6,7 +6,7 @@
 /*   By: nando <nando@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 15:12:36 by nando             #+#    #+#             */
-/*   Updated: 2025/10/17 15:17:22 by nando            ###   ########.fr       */
+/*   Updated: 2025/10/17 16:04:24 by nando            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static int	render_frame(t_game *g)
 static void	run_game(t_game *g)
 {
 	mlx_hook(g->win, 2, 1L << 0, handle_key_press, g);
+	mlx_hook(g->win, 17, 0, close_window, g);
 	mlx_loop_hook(g->mlx, render_frame, g);
 }
 
