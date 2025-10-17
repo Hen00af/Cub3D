@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_engine.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nando <nando@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 15:12:36 by nando             #+#    #+#             */
-/*   Updated: 2025/10/17 15:17:22 by nando            ###   ########.fr       */
+/*   Updated: 2025/10/17 15:32:59 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@ static int	render_frame(t_game *g)
 {
 	rendering_ceiling_and_floor(g, &g->world);
 	rendering_walls(g);
-	b_render(g);
+	if (g->is_bonus)
+	{
+		b_render(g);
+	}
 	mlx_put_image_to_window(g->mlx, g->win, g->render.img.canvas, 0, 0);
 	return (0);
 }

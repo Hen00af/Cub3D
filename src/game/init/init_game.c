@@ -25,6 +25,10 @@ void	load_all_textures(t_game *game)
 
 void	init_game(t_game *g)
 {
+	g->is_bonus = FALSE;
+	#ifdef BONUS
+		g->is_bonus = TRUE;
+	#endif
 	g->mlx = mlx_init();
 	g->win = mlx_new_window(g->mlx, WIN_W, WIN_H, "Cub3D");
 	g->render.img.canvas = mlx_new_image(g->mlx, WIN_W, WIN_H);
