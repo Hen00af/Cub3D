@@ -23,7 +23,12 @@ OBJ = $(patsubst %.c,$(OBJDIR)/%.o,$(SRC))
 ## all field
 #
 
-all: $(NAME)
+all: CFLAGS += -DBONUS=0
+all:
+	@if [ -f "$(NAME_BONUS)" ]; then \
+		$(MAKE) b_fclean; \
+	fi
+	@$(MAKE) $(NAME)
 
 $(NAME): $(OBJ)
 	@ar rcs $@ $^
@@ -33,18 +38,20 @@ $(OBJDIR)/%.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 #
-## all field
-
-
+## all field end
 
 ## Bonus field
 #
 
-bonus: CFLAGS += -D BONUS=1
-bonus: $(BONUS_NAME)
+bonus:
+	@if [ -f "$(NAME)" ]; then \
+		$(MAKE) fclean; \
+	fi
+	@$(MAKE) CFLAGS="$(CFLAGS) -DBONUS=1" $(BONUS_NAME)
 
 $(BONUS_NAME): $(OBJ)
 	@ar rcs $@ $^
+
 #
 ## Bonus Field 
 
