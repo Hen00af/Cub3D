@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   game.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nando <nando@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/17 15:12:53 by nando             #+#    #+#             */
+/*   Updated: 2025/10/17 15:15:21 by nando            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef GAME_H
 # define GAME_H
 
@@ -5,13 +17,9 @@
 # include <math.h>
 # include <stdlib.h>
 
-// ウィンドウとキーの定数
+// window size
 # define WIN_W 960
 # define WIN_H 720
-
-# define CEILING_COLOR 0x87CEEB
-# define FLOOR_COLOR 0x8B4513
-# define WALL_COLOR 0x808080
 
 # define VIEWING_ANGLE 0.66
 # define DIR_FORWARD 1
@@ -29,7 +37,6 @@
 # define MOVE_SPEED 0.1
 # define ROTATE_SPEED 0.05
 
-// 画像データ構造体
 typedef struct s_image_data
 {
 	void			*canvas;
@@ -41,7 +48,6 @@ typedef struct s_image_data
 	int				width;
 }					t_image_data;
 
-// プレイヤー構造体
 typedef struct s_player
 {
 	double			player_dir;
@@ -55,7 +61,7 @@ typedef struct s_player
 	double			plane_y;
 }					t_player;
 
-// gameディレクトリで使用するマップデータファイル
+// world data used game_dir
 typedef struct s_world
 {
 	char			*no_path;
@@ -67,7 +73,7 @@ typedef struct s_world
 	char			**map;
 }					t_world_data;
 
-// レイキャスティング用構造体
+// raycasting
 typedef struct s_ray
 {
 	double			camera_x;
@@ -109,7 +115,6 @@ typedef struct s_render
 	int				side;
 }					t_render;
 
-// DDA用構造体
 typedef struct s_dda
 {
 	int				map_x;
@@ -128,12 +133,11 @@ typedef struct s_game
 {
 	void			*mlx;
 	void			*win;
-	t_world_data world; // parse層から受け取る
-	t_player player;    // game層で更新
-	t_render render;    // render層で使用
+	t_world_data world; // received from parse
+	t_player player;	// update game_dir
+	t_render render;
 }					t_game;
 
-// 関数プロトタイプ
 void				calculate_ray(t_ray *r, t_player *p, int x);
 void				init_game(t_game *g);
 void				dda(t_game *g);
