@@ -6,7 +6,7 @@
 /*   By: nando <nando@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 15:12:53 by nando             #+#    #+#             */
-/*   Updated: 2025/10/17 16:25:36 by nando            ###   ########.fr       */
+/*   Updated: 2025/10/17 16:58:03 by nando            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <math.h>
 # include <stdlib.h>
 
-// window size
 # define WIN_W 960
 # define WIN_H 720
 
@@ -36,26 +35,14 @@
 # define KEY_RIGHT 65363
 # define MOVE_SPEED 0.1
 # define ROTATE_SPEED 0.05
+# define FALSE 0
+# define TRUE 1
 
-typedef struct s_bonus
-{
-	int				map_x;
-	int				map_y;
-	int				screen_x;
-	int				screen_y;
-	int				color;
-	char			tile;
-	int				player_map_x;
-	int				player_map_y;
-	int				dir_len;
-	int				dx;
-	int				dy;
-	int				px;
-	int				py;
-	int				i;
-	int				px2;
-	int				py2;
-}					t_bonus;
+# ifdef BONUS
+#  define IS_BONUS_MODE 1
+# else
+#  define IS_BONUS_MODE 0
+# endif
 
 typedef struct s_image_data
 {
@@ -168,10 +155,31 @@ typedef struct s_game
 {
 	void			*mlx;
 	void			*win;
+	int				is_bonus;
 	t_world_data	world;
 	t_player		player;
 	t_render		render;
 }					t_game;
+
+typedef struct s_bonus
+{
+	int				map_x;
+	int				map_y;
+	int				screen_x;
+	int				screen_y;
+	int				color;
+	char			tile;
+	int				player_map_x;
+	int				player_map_y;
+	int				dir_len;
+	int				dx;
+	int				dy;
+	int				px;
+	int				py;
+	int				i;
+	int				px2;
+	int				py2;
+}					t_bonus;
 
 t_image_data		*select_texture(t_game *g);
 void				init_game(t_game *g);
@@ -198,6 +206,6 @@ void				dda(t_game *g);
 int					execute_game(t_game *game);
 
 // bonus
-void				b_render(t_game *g);
+void				b_render_minimap(t_game *g);
 
 #endif

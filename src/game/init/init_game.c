@@ -6,7 +6,7 @@
 /*   By: nando <nando@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 15:49:15 by nando             #+#    #+#             */
-/*   Updated: 2025/10/17 15:49:17 by nando            ###   ########.fr       */
+/*   Updated: 2025/10/17 16:48:04 by nando            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,6 @@ void	init_game(t_game *g)
 	g->render.img.address = mlx_get_data_addr(g->render.img.canvas,
 			&g->render.img.bits_per_pixel, &g->render.img.line_length,
 			&g->render.img.endian);
+	g->is_bonus = IS_BONUS_MODE;
 	load_all_textures(g);
 }

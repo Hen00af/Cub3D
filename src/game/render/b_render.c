@@ -6,7 +6,7 @@
 /*   By: nando <nando@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 15:55:31 by nando             #+#    #+#             */
-/*   Updated: 2025/10/17 16:04:10 by nando            ###   ########.fr       */
+/*   Updated: 2025/10/17 16:57:47 by nando            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,12 +123,4 @@ void	b_render_minimap(t_game *g)
 	draw_minimap_tiles(g, &b);
 	draw_minimap_player(g, &b);
 	draw_minimap_direction(g, &b);
-}
-
-/* ---------------------------------------------------------
-** b_render: bonus描画のエントリーポイント
-** --------------------------------------------------------- */
-void	b_render(t_game *g)
-{
-	b_render_minimap(g);
 }

@@ -12,6 +12,7 @@ int	main(int ac, char **av)
 	init_maps(&parse.data);
 	if (!is_valid_args(ac, av) || !is_valid_element(av, &fd, &parse))
 		return (1);
+	close(fd);
 	printf("Map parsing completed successfully!\n");
 	load_game(&parse, &game);
 	execute_game(&game);

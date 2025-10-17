@@ -6,17 +6,25 @@
 /*   By: nando <nando@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 15:12:36 by nando             #+#    #+#             */
-/*   Updated: 2025/10/17 16:04:24 by nando            ###   ########.fr       */
+/*   Updated: 2025/10/17 16:57:20 by nando            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
 
+void	b_render(t_game *g)
+{
+	b_render_minimap(g);
+}
+
 static int	render_frame(t_game *g)
 {
 	rendering_ceiling_and_floor(g, &g->world);
 	rendering_walls(g);
-	b_render(g);
+	if (g->is_bonus)
+	{
+		b_render(g);
+	}
 	mlx_put_image_to_window(g->mlx, g->win, g->render.img.canvas, 0, 0);
 	return (0);
 }

@@ -1,4 +1,5 @@
 NAME = cub3D
+NAME_BONUS = cub3D_bonus
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -I./lib -I./src/game -I./src/parse -I./get_next_line -I./libft -I./minilibx-linux
 
@@ -23,16 +24,33 @@ v:
 	$(MAKE) -C src/parse
 
 $(LIBFT):
-	$(MAKE) -C libft
+	@$(MAKE) -C libft
 $(PARSE):
-	$(MAKE) -C src/parse
+	@$(MAKE) -C src/parse
 $(GAME):
-	$(MAKE) -C src/game
+	@$(MAKE) -C src/game
 $(GNL):
-	$(MAKE) -C get_next_line
+	@$(MAKE) -C get_next_line
 
 j:
 	$(MAKE) -j all
+
+
+## Bonus field
+#
+
+GAME_BONUS = src/game/game_bonus.a
+$(GAME_BONUS):
+	@$(MAKE) -C src/game bonus
+
+bonus: $(NAME_BONUS)
+
+$(NAME_BONUS): main.o $(MISC) $(GAME_BONUS) $(PARSE) $(GNL) $(LIBFT)
+	$(CC) $(CFLAGS) -o $@ $^ -Lminilibx-linux -lmlx -lXext -lX11 -lm
+
+#
+## Bonus field end
+
 
 clean:
 	$(MAKE) -C libft clean
@@ -40,6 +58,14 @@ clean:
 	$(MAKE) -C src/game clean
 	$(MAKE) -C get_next_line clean
 	rm -f main.o $(MISC)
+
+b_fclean: clean
+	$(MAKE) -C libft fclean
+	$(MAKE) -C src/parse fclean
+	$(MAKE) -C src/game b_fclean
+	$(MAKE) -C get_next_line fclean
+	rm -f $(NAME_BONUS)
+
 
 fclean: clean
 	$(MAKE) -C libft fclean
