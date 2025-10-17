@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nando <nando@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 00:13:06 by shattori          #+#    #+#             */
-/*   Updated: 2025/10/17 00:20:32 by shattori         ###   ########.fr       */
+/*   Updated: 2025/10/17 17:37:56 by nando            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ int					is_valid_texture(t_data *data);
 int					is_valid_texture_file(char *path);
 int					is_valid_element(char **av, int *fd, t_parse *cub);
 int					is_valid_map(char **map, t_data *data);
-int					exit_cub(int *fd, t_parse *cub);
 void				init_maps(t_data *data);
 int					is_valid_args(int ac, char **av);
 char				**map_copy(char **map);
