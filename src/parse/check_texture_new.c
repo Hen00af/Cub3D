@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_texture_new.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nando <nando@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 22:20:57 by shattori          #+#    #+#             */
-/*   Updated: 2025/10/17 17:45:47 by nando            ###   ########.fr       */
+/*   Updated: 2025/10/17 17:55:42 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,17 @@ char	*get_next_str(int fd)
 	return (str);
 }
 
-// TODO: テクスチャファイルの存在チェック
-// NO, SO, WE, EA の4つのテクスチャが定義されているかチェック
 int	get_map_info(int *fd, t_parse *cub)
 {
 	char	*str;
 	int		cnt;
 
 	cnt = 0;
-	// printf("get_map_info\n");
 	while (cnt < 6)
 	{
 		str = get_next_str(*fd);
 		if (!str)
 			break ;
-		// printf("%s", str);
 		separate_args(&cub->data, str);
 		free(str);
 		cnt++;
