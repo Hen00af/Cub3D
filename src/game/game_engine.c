@@ -3,14 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   game_engine.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nando <nando@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 15:12:36 by nando             #+#    #+#             */
-/*   Updated: 2025/10/17 15:32:59 by shattori         ###   ########.fr       */
+/*   Updated: 2025/10/17 16:57:20 by nando            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
+
+void	b_render(t_game *g)
+{
+	b_render_minimap(g);
+}
 
 static int	render_frame(t_game *g)
 {
@@ -27,6 +32,7 @@ static int	render_frame(t_game *g)
 static void	run_game(t_game *g)
 {
 	mlx_hook(g->win, 2, 1L << 0, handle_key_press, g);
+	mlx_hook(g->win, 17, 0, close_window, g);
 	mlx_loop_hook(g->mlx, render_frame, g);
 }
 
