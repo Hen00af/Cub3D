@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   game_engine.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nando <nando@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/17 15:12:36 by nando             #+#    #+#             */
+/*   Updated: 2025/10/17 15:17:22 by nando            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "game.h"
 
@@ -12,17 +23,14 @@ static int	render_frame(t_game *g)
 
 static void	run_game(t_game *g)
 {
-	mlx_hook(g->win, 2, 1L << 0, handle_key_press, g); // キー入力時
-	mlx_loop_hook(g->mlx, render_frame, g);            // 毎フレーム呼ばれる
-	render_frame(g);                                   // 初期描画
+	mlx_hook(g->win, 2, 1L << 0, handle_key_press, g);
+	mlx_loop_hook(g->mlx, render_frame, g);
 }
 
-int	execute_game(t_game *game)
+int	execute_game(t_game *g)
 {
-	init_game(game);
-	run_game(game);
-	mlx_put_image_to_window(game->mlx, game->win, game->render.img.canvas, 0,
-		0);
-	mlx_loop(game->mlx);
+	init_game(g);
+	run_game(g);
+	mlx_loop(g->mlx);
 	return (0);
 }
