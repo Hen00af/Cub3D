@@ -10,8 +10,9 @@ SRC = check_texture_new.c \
       parse_maps.c \
       utils.c \
       valid_map.c \
+      check_texture2.c \
       exit_invalid_maps.c \
-      exit_parse.c
+      exit_parse.c \
 
 OBJDIR = obj
 OBJ = $(patsubst %.c,$(OBJDIR)/%.o,$(SRC))
