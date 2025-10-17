@@ -6,7 +6,7 @@
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 22:20:57 by shattori          #+#    #+#             */
-/*   Updated: 2025/10/17 00:15:12 by shattori         ###   ########.fr       */
+/*   Updated: 2025/10/17 16:39:14 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ int	get_map_info(int *fd, t_parse *cub)
 	int		cnt;
 
 	cnt = 0;
-	printf("get_map_info\n");
+	// printf("get_map_info\n");
 	while (cnt < 6)
 	{
 		str = get_next_str(*fd);
 		if (!str)
 			break ;
-		printf("%s", str);
+		// printf("%s", str);
 		separate_args(&cub->data, str);
 		free(str);
 		cnt++;
