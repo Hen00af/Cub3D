@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nando <nando@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 15:12:53 by nando             #+#    #+#             */
-/*   Updated: 2025/10/17 15:15:21 by nando            ###   ########.fr       */
+/*   Updated: 2025/10/17 15:30:55 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@
 # define KEY_RIGHT 65363
 # define MOVE_SPEED 0.1
 # define ROTATE_SPEED 0.05
+# define FALSE 0
+# define TRUE 1
 
 typedef struct s_image_data
 {
@@ -133,9 +135,10 @@ typedef struct s_game
 {
 	void			*mlx;
 	void			*win;
+	int				is_bonus;
 	t_world_data world; // received from parse
-	t_player player;	// update game_dir
-	t_render render;
+	t_player player;    // update game_dir
+	t_render		render;
 }					t_game;
 
 void				calculate_ray(t_ray *r, t_player *p, int x);

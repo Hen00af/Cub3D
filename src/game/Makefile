@@ -1,4 +1,5 @@
 NAME = game.a
+BONUS_NAME  = game_bonus.a
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -I./ -I../../libft -I../../get_next_line -I../../lib -I../../minilibx-linux
@@ -15,6 +16,10 @@ SRC = game_engine.c \
 OBJDIR = obj
 OBJ = $(patsubst %.c,$(OBJDIR)/%.o,$(SRC))
 
+
+## all field
+#
+
 all: $(NAME)
 
 $(NAME): $(OBJ)
@@ -22,13 +27,33 @@ $(NAME): $(OBJ)
 
 $(OBJDIR)/%.o: %.c
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+#
+## all field
+
+
+
+## Bonus field
+#
+
+bonus: CFLAGS += -DBONUS 
+bonus: $(BONUS_NAME)
+
+$(BONUS_NAME): $(OBJ)
+	@ar rcs $@ $^
+#
+## Bonus Field 
+
 
 clean:
-	rm -rf $(OBJDIR)
+	@rm -rf $(OBJDIR)
+      
+b_fclean: clean
+	@rm  -f $(BONUS_NAME)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
 
