@@ -9,7 +9,11 @@ GAME  = src/game/game.a
 GNL   = get_next_line/gnl.a
 MISC  = src/misc/init_game.o
 
-all: $(NAME)
+all:
+	@if [ -f "$(NAME_BONUS)" ]; then \
+		$(MAKE) b_fclean; \
+	fi
+	@$(MAKE) $(NAME)
 
 $(NAME): main.o $(MISC) $(PARSE) $(GAME) $(GNL) $(LIBFT)
 	$(CC) $(CFLAGS) -o $@ $^ -Lminilibx-linux -lmlx -lXext -lX11 -lm
@@ -40,10 +44,15 @@ j:
 #
 
 GAME_BONUS = src/game/game_bonus.a
+
 $(GAME_BONUS):
 	@$(MAKE) -C src/game bonus
 
-bonus: $(NAME_BONUS)
+bonus:
+	@if [ -f "$(NAME)" ]; then \
+		$(MAKE) fclean; \
+	fi
+	@$(MAKE) $(NAME_BONUS)
 
 $(NAME_BONUS): main.o $(MISC) $(GAME_BONUS) $(PARSE) $(GNL) $(LIBFT)
 	$(CC) $(CFLAGS) -o $@ $^ -Lminilibx-linux -lmlx -lXext -lX11 -lm
