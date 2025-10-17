@@ -7,7 +7,7 @@ LIBFT = libft/libft.a
 PARSE = src/parse/parse.a
 GAME  = src/game/game.a
 GNL   = get_next_line/gnl.a
-MISC  = src/misc/init_game.o
+MISC  = src/misc/init_game.o src/misc/init_player.o
 
 all:
 	@if [ -f "$(NAME_BONUS)" ]; then \
@@ -21,7 +21,10 @@ $(NAME): main.o $(MISC) $(PARSE) $(GAME) $(GNL) $(LIBFT)
 main.o: main.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-src/misc/init_game.o: src/misc/init_game.c
+src/misc/init_game.o: src/misc/init_game.c 
+	$(CC) $(CFLAGS) -c $< -o $@
+
+src/misc/init_player.o: src/misc/init_player.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 v:
