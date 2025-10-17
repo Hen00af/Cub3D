@@ -8,10 +8,13 @@ SRC = game_engine.c \
       init/init_game.c \
       key_operation/handle_key.c \
       key_operation/move.c \
-      render/render_algo.c \
+	  render/dda.c \
+	  render/init_dda.c \
+	  render/utils.c \
+	  render/calculate.c \
       render/render.c \
       render/b_render.c \
-      utils/game_utils.c
+      utils/close_window.c
 	  
 OBJDIR = obj
 OBJ = $(patsubst %.c,$(OBJDIR)/%.o,$(SRC))
@@ -37,7 +40,7 @@ $(OBJDIR)/%.o: %.c
 ## Bonus field
 #
 
-bonus: CFLAGS += -DBONUS 
+bonus: CFLAGS += -D BONUS=1
 bonus: $(BONUS_NAME)
 
 $(BONUS_NAME): $(OBJ)
@@ -53,7 +56,7 @@ b_fclean: clean
 	@rm  -f $(BONUS_NAME)
 
 fclean: clean
-	@rm -f $(NAME)
+	@rm -f $(NAME) 
 
 re: fclean all
 
