@@ -2,6 +2,8 @@
 
 this is a project thst is 3D game in C.
 
+(gifs)[https://github.com/Hen00af/Cub3D/blob/main/doc/gifs/Screencast%20from%2010-22-2025%2008-03-55%20AM%20(1).gif]
+
 ## Skills 🔥
 mathmatics (vector)
 C
