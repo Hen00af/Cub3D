@@ -52,7 +52,7 @@ Example visualization:
 |                                                      |
 ```
 ## structure
-
+```
 cub3D/
 ├── src/
 │   ├── parse/        # Parse .cub map files
@@ -66,3 +66,4 @@ cub3D/
 │   └── validmaps/
 └── Makefile
 
+```
