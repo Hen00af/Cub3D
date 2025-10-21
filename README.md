@@ -9,19 +9,55 @@ ray-casting
 gaming
 
 ## How to play
-in terminal, execute this command
+#### 1️⃣ Build Dependencies
 ```sh
-  git clone https://github.com/42paris/minilibx-linux.git && (cd ./minilibx-linux && make)
-  make
-```
-and execute this command
-
-```sh
-  ./cub3D maps/validmaps/{map_name}.cub
+git clone https://github.com/42paris/minilibx-linux.git
+cd minilibx-linux && make
+cd ..
+make
 ```
 
+### 2️⃣ Run the Game
+```sh
+./cub3D maps/validmaps/{map_name}.cub
+```
+
+Now you can explore the map in 3D view using keyboard controls.
 then you can play this game.
 
-## what is ray casting?
+| Key           | Action                                 |
+| ------------- | -------------------------------------- |
+| W / A / S / D | Move forward / left / backward / right |
+| ← / →         | Rotate view                            |
+| ESC           | Exit the game                          |
 
-## 
+## 🧩 What is Ray Casting?
+
+Ray casting is a technique to simulate 3D perspective in a 2D world.
+The world map is a 2D grid.
+The player’s viewpoint casts rays in the direction they are facing.
+Each ray travels until it hits a wall.
+The distance to the wall determines the height of the vertical line drawn on screen — creating the illusion of depth.
+This method allows 3D rendering without full 3D geometry, making it efficient and simple enough to implement in pure C.
+Example visualization:
+
+Top-down map view (2D)          Screen view (3D)
+     P → → → → ▒▒▒▒▒▒▒▒▒▒        ███████████
+     ↑         ▒▒▒▒▒▒▒▒▒▒        ███████████
+     Walls     ▒▒▒▒▒▒▒▒▒▒        ███████████
+
+## structure
+
+cub3D/
+├── src/
+│   ├── parse/        # Parse .cub map files
+│   ├── game/         # Player logic, ray-casting, rendering
+│   ├── utils/        # Math and helper functions
+│   └── main.c
+├── includes/
+│   └── cub3d.h
+|
+├── maps/
+│   └── validmaps/
+└── Makefile
+
