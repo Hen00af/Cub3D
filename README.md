@@ -45,11 +45,11 @@ The distance to the wall determines the height of the vertical line drawn on scr
 This method allows 3D rendering without full 3D geometry, making it efficient and simple enough to implement in pure C.
 Example visualization:
 
-Top-down map view (2D)          Screen view (3D)
-     P → → → → ▒▒▒▒▒▒▒▒▒▒        ███████████
-     ↑         ▒▒▒▒▒▒▒▒▒▒        ███████████
-     Walls     ▒▒▒▒▒▒▒▒▒▒        ███████████
-
+|Top-down map view (2D)          Screen view (3D)      |
+|     P → → → → ▒▒▒▒▒▒▒▒▒▒        ███████████          |
+|     ↑         ▒▒▒▒▒▒▒▒▒▒        ███████████          |
+|     Walls     ▒▒▒▒▒▒▒▒▒▒        ███████████          |
+|                                                      |
 ## structure
 
 cub3D/
