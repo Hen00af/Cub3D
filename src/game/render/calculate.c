@@ -6,7 +6,7 @@
 /*   By: nando <nando@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 16:21:39 by nando             #+#    #+#             */
-/*   Updated: 2025/10/17 18:03:16 by nando            ###   ########.fr       */
+/*   Updated: 2025/10/21 15:18:47 by nando            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,5 @@ void	calculate_the_wall_height(t_render *r, t_game *g)
 		r->draw_start = 0;
 	r->draw_end = g->render.line_height / 2 + WIN_H / 2;
 	if (r->draw_end >= WIN_H)
-		r->draw_end = WIN_H - 1;
+		r->draw_end = WIN_H;
 }

@@ -6,7 +6,7 @@
 /*   By: nando <nando@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 15:54:00 by nando             #+#    #+#             */
-/*   Updated: 2025/10/17 16:20:30 by nando            ###   ########.fr       */
+/*   Updated: 2025/10/21 15:42:21 by nando            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ static void	rendering_texture(t_game *g, int x)
 			* g->render.ray.dir_x;
 	design.wall_x -= floor(design.wall_x);
 	design.tex_x = (int)(design.wall_x * (double)texture->width);
+	if ((g->render.side == 0 && g->render.ray.dir_x < 0))
+		design.tex_x = texture->width - design.tex_x - 1;
 	design.tex_step = (double)texture->height / (double)g->render.line_height;
 	design.tex_pos = (g->render.draw_start - WIN_H / 2 + g->render.line_height
 			/ 2) * design.tex_step;
