@@ -65,5 +65,27 @@ cub3D/
 ├── maps/
 │   └── validmaps/
 └── Makefile
+```
+## Design Overview
+
+This project is structured as a small **game engine** rather than a single program.  
+It follows a clean separation of responsibilities:
+
+| Layer | Folder | Responsibility |
+|-------|---------|----------------|
+| **Parsing** | `src/parse/` | Load and validate `.cub` map files |
+| **Game Logic** | `src/game/` | Manage player state, input, and raycasting |
+| **Rendering** | `src/game/render/` | Convert ray data into visual frames |
+| **Utilities** | `src/utils/` | Vector math, memory management, helpers |
+
+This architecture transforms map data → game state → rendered frames,  
+similar to **request → business logic → response** flow in backend systems.
+
+## 🚀 Future Direction
+
+I plan to port the rendering core to **Go** and expose it as a REST API.  
+The idea is to turn this engine into a small backend service:
+
+
 
 ```
